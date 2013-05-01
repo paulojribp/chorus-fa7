@@ -12,8 +12,10 @@ import com.chorus.entity.Usuario;
 public class ChorusServiceImpl implements ChorusService {
 
 	private ChorusDao dao;
+	private UsuarioService usuarioService;
 	
-	public ChorusServiceImpl(ChorusDao chorusDao) {
+	public ChorusServiceImpl(ChorusDao chorusDao, UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
 		this.dao = chorusDao;
 	}
 	
@@ -25,6 +27,8 @@ public class ChorusServiceImpl implements ChorusService {
 	@Override
 	public void chorar(Chorus chorus) throws Exception {
 		
+		Usuario usuario = (Usuario) usuarioService.findByUsuario(chorus.getUsuario());
+		chorus.setUsuario(usuario);
 		//TODO VALIDAR O QUE??
 		//Usuario usuario = chorus.getUsuario();
 		//validar(usuario);

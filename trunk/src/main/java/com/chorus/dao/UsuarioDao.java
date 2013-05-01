@@ -13,12 +13,18 @@ import com.chorus.entity.Usuario;
 public class UsuarioDao extends GenericDao<Usuario>{
 	
 	@SuppressWarnings("unchecked")
-	public List<Usuario> findByUsuario(Usuario usuario) {
+	public Usuario findByUsuario(Usuario usuario) {
 		String sql = " from Usuario user where user.username = ? ";
 		Query q = entityManager.createQuery(sql);
 		q.setParameter(1, usuario.getUsername());
-		
-		return q.getResultList();
+
+		Usuario user = null;
+		List resultList = q.getResultList();
+		if(resultList != null && !resultList.isEmpty()){
+			user = (Usuario) resultList.get(0);
+		}
+		return user;
 	}
+	
 	
 }
