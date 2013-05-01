@@ -1,7 +1,5 @@
 package com.chorus.service;
 
-import java.util.List;
-
 import br.com.caelum.vraptor.ioc.Component;
 
 import com.chorus.dao.UsuarioDao;
@@ -41,8 +39,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new UsuarioEmailInvalidoException("Email não pode ser nulo");
 		}
 		
-		List<Usuario> users = dao.findByUsuario(userToSave);
-		if(users != null && !users.isEmpty()){
+		Usuario users = dao.findByUsuario(userToSave);
+		if(users != null){
 			throw new UsuarioJaExisteException("Usuario já existe");
 		}	
 	}
@@ -55,7 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> findByUsuario(Usuario usuario) {
+	public Usuario findByUsuario(Usuario usuario) {
 		return dao.findByUsuario(usuario);
 	}
 

@@ -1,5 +1,6 @@
 package com.chorus.action;
 
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -23,15 +24,18 @@ public class TimelineController {
 
 	public void publicar(Chorus chorus) throws Exception {
 		chorusService.chorar(chorus);
-		result.redirectTo(TimelineController.class).listarAll();
+		result.redirectTo(TimelineController.class).listar();
 	}
+
 
 	@Path("/listar/{usuario.username}")
+	@Get
 	public void listar(Usuario usuario) throws Exception {
 		result.include("chorinhos", chorusService.findByUsuario(usuario));
+		result.of(this).listar();
 	}
 
-	public void listarAll() throws Exception {
-		result.include("chorinhos", chorusService.loadAll());
+	public void listar() throws Exception {
+//		result.include("chorinhos", chorusService.loadAll());
 	}
 }

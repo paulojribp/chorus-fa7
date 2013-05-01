@@ -10,10 +10,11 @@ import br.com.caelum.vraptor.ioc.Component;
 
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
+import com.chorus.model.Timeline;
 
 
 @Component
-public class TimelineDao {
+public class TimelineDao extends GenericDao<Timeline>{
 
 	private EntityManager entityManager;
 	
@@ -40,11 +41,6 @@ public class TimelineDao {
 		q.setParameter(0, usuario);
 		
 		return q.getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Chorus> loadAll() {
-		return entityManager.createQuery("from Chorus").getResultList();
 	}
 	
 }
