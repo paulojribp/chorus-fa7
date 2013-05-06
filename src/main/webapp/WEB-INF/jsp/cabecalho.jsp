@@ -86,10 +86,10 @@
 					<input type="text" id="inputEmail" placeholder="Email" style="width: 300px;" />
 				</div>
 				<div class="control-group">
-					<input type="text" id="inputSenha" placeholder="Senha" style="width: 300px;">
+					<input type="password" id="inputSenha" placeholder="Senha" style="width: 300px;">
 				</div>
 				<div class="control-group">
-					<input type="text" id="inputConfirmaSenha" placeholder="Confirmação de Senha" style="width: 300px;">
+					<input type="password" id="inputConfirmaSenha" placeholder="Confirmação de Senha" style="width: 300px;">
 				</div>
 			</form>
 		</div>
