@@ -11,20 +11,19 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Chorus</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/estilo.css">
         <style>
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
+                background-image: url("../images/cidade.png");
             }
         </style>
-        <link rel="stylesheet" href="../css/bootstrap-responsive.min.css">
-		
-        <script src="../js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <script src="../js/vendor/jquery-1.9.1.min.js"></script>
         <script src="../js/chorus.js"></script>
     </head>
@@ -86,10 +85,10 @@
 					<input type="text" id="inputEmail" placeholder="Email" style="width: 300px;" />
 				</div>
 				<div class="control-group">
-					<input type="password" id="inputSenha" placeholder="Senha" style="width: 300px;">
+					<input type="text" id="inputSenha" placeholder="Senha" style="width: 300px;">
 				</div>
 				<div class="control-group">
-					<input type="password" id="inputConfirmaSenha" placeholder="Confirmação de Senha" style="width: 300px;">
+					<input type="text" id="inputConfirmaSenha" placeholder="Confirmação de Senha" style="width: 300px;">
 				</div>
 			</form>
 		</div>

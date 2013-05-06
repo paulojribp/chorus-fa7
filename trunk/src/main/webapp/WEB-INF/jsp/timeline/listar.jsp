@@ -3,21 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/WEB-INF/jsp/cabecalho.jsp" %>
-
-        <script type="text/javascript">
-			$('#chorinho').keypress(function(event){
-				contador = parseInt($('#contador_chorinho').text());
-					if(event.which==8 && contador <= 140){
-						$('#contador_chorinho').text(contador+1);
-					}else{
-						$('#contador_chorinho').text(contador-1);
-						if(contador== 0) {
-							alert('perdeu playboy!!!');
-						}
-					}
-			});
-		</script>
-
         <div class="container">
             <div class="container-fluid">
 			  <div class="row-fluid">
@@ -30,23 +15,44 @@
 			    </div>
 			    <div class="span8">
 			    	<div class="well">
-			    	<span class="pull-right"><a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Enviar chorinho</a></span>
+				    	<form action="<c:url value="/timeline/publicar" />" method="post">
+						    <legend>Escrevendo chorinho</legend>
+						  <div class="control-group">
+						    <label class="control-label" for="Nome">Nome</label>
+						    <div class="controls">
+	  				    	  <input  type="text" id="nome" name ="chorus.usuario.username" placeholder="Nome">
+						    </div>
+					  	  </div>
+					  	  <div class="control-group">
+						    <label class="control-label" for="Nome">Chorinho</label>
+						    <div class="controls">
+	  				    	  <textarea rows="3" id="chorinho" name="chorus.mensagem" ></textarea>
+						    </div>
+					  	  </div>
+					  	  <div class="control-group">
+						  	<div class="controls">
+						    	<button class="btn btn-primary" type="submit">Enviar</button>
+						  	</div>
+					  	  </div>
+					  	</form>
 			    	</div>
 			    	<div class="well">
-			    		<legend>Chorinhos</legend>
-			    		<ul class="media-list">
+			    		<h3>Chorinhos</h3>
+			    		<table class="table chorus-table-hover">
 			    			<c:forEach var="chorus" items="${chorinhos}">
-					    		<li class="media">
-								    <a class="pull-left" href="#">
-								      <img class="media-object" data-src="../images/thumb64x64.png">
-								    </a>
-								    <div class="media-body">
-								    	<h4 class="media-heading">${chorus.usuario.username}</h4>
-								    	<p>${chorus.mensagem}</p>
-								    </div>
-								  </li>
+					    		<tr>
+					    			<td>
+									    <a class="pull-left" href="#">
+									      <img class="media-object" data-src="../images/thumb64x64.png">
+									    </a>
+									    <div class="media-body">
+									    	<h4 class="media-heading">${chorus.usuario.username}</h4>
+									    	<p>${chorus.mensagem}</p>
+									    </div>
+								    </td>
+							     </tr>
 							 </c:forEach> 
-			    		</ul>
+			    		</table>
 			    	</div>
 			    </div>
 			  </div>
@@ -56,25 +62,6 @@
             <footer>
                 <p>&copy; Company 2012</p>
             </footer>
-			<!-- Modal -->
-			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			  <form action="<c:url value="/timeline/publicar" />" method="post">
-				  <div class="modal-header">
-				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				    <h3 id="myModalLabel">Escrevendo chorinho</h3>
-				  </div>
-				  <div class="modal-body">
-				    <p>Nome<input class="input-block-level" id="nome" name ="chorus.usuario.username"></input></p>
-				  </div>
-				  <div class="modal-body">
-				    <p>Chorus<textarea rows="3" class="input-block-level" id="chorinho" name="chorus.mensagem"></textarea></p>
-				  </div>
-				  <div class="modal-footer">
-				    <button class="btn btn-primary" type="submit">Enviar</button>
-				  </div>
-			  </form>
-			</div>
-
         </div> 
 
         <script src="../js/vendor/bootstrap.min.js"></script>
