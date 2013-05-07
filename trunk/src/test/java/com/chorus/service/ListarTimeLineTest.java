@@ -10,6 +10,7 @@ package com.chorus.service;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.chorus.dao.ChorusDao;
+import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
@@ -35,7 +38,9 @@ public class ListarTimeLineTest {
 	
 	@BeforeClass
 	public static void beforeClass() {
-//		service = new TimeLineServiceImpl();
+		ChorusDao chorusDao = mock(ChorusDao.class);
+		TimelineDao timelineDao = mock(TimelineDao.class);;
+		service = new TimeLineServiceImpl(timelineDao, chorusDao);
 	}
 	
 	@Test(expected=Exception.class)
