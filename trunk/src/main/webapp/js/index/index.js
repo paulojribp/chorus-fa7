@@ -3,7 +3,7 @@ $(document).ready(function () {
 		Usuario.newUser();
 	});
 	
-	$("#cadastro-msg").hide(); //attr('visible', 'hidden');
+	$("#cadastro-msg").hide();
 });
 
 var Usuario = {};
@@ -30,6 +30,7 @@ Usuario.newUser = function() {
 				$("#cadastro-msg").addClass('alert-success');
 				$("#cadastro-msg").text("Cadastro realizado com sucesso. Realize o login");
 				$("#cadastro-msg").show();
+				Usuario.clearFormCadastro();
 			} else {
 				$("#cadastro-msg").addClass('alert-error');
 				$("#cadastro-msg").text(data.returnDto.message);
@@ -41,4 +42,12 @@ Usuario.newUser = function() {
 		}
 	});
 	
+};
+
+Usuario.clearFormCadastro = function() {
+	$('#username').val('');
+	$('#nome').val('');
+	$('#email').val('');
+	$('#senha').val('');
+	$('#confirmasenha').val('');
 };

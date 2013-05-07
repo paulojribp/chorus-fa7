@@ -8,6 +8,7 @@ import com.chorus.entity.Usuario;
 import com.chorus.exceptions.ErroAoSeguirException;
 import com.chorus.exceptions.UsuarioConfirmacaoSenhaException;
 import com.chorus.exceptions.UsuarioEmailInvalidoException;
+import com.chorus.exceptions.UsuarioInexistenteException;
 import com.chorus.exceptions.UsuarioJaExisteException;
 import com.chorus.exceptions.UsuarioSenhaInvalidaException;
 import com.chorus.exceptions.UsuarioUsernameInvalidoException;
@@ -63,6 +64,23 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if (!dao.userAlreadyFollow(userId, userASeguirId)) {
 			dao.seguir(userId, userASeguirId);
 		}
+	}
+
+	@Override
+	public void refresh(Usuario user) {
+		dao.refresh(user);
+	}
+
+	@Override
+	public Usuario login(Usuario usuario) throws UsuarioInexistenteException {
+		String senha = usuario.getSenha();
+		
+		usuario = dao.findByUsuario(new Usuario(usuario.getUsername()));
+		
+		if (usuario == null || usuario.getId() == null || !usuario.getSenha().equals(senha))
+			throw new UsuarioInexistenteException();
+		
+		return usuario;
 	}
 
 }

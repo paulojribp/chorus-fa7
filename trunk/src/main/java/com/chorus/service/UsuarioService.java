@@ -3,6 +3,7 @@ package com.chorus.service;
 import com.chorus.dto.UsuarioDto;
 import com.chorus.entity.Usuario;
 import com.chorus.exceptions.ErroAoSeguirException;
+import com.chorus.exceptions.UsuarioInexistenteException;
 
 public interface UsuarioService {
 
@@ -11,5 +12,9 @@ public interface UsuarioService {
 	Usuario findByUsuario(Usuario usuario);
 	
 	void seguir(Long userId, Long userASeguirId) throws ErroAoSeguirException;
+
+	void refresh(Usuario user);
+
+	Usuario login(Usuario usuario) throws UsuarioInexistenteException;
 
 }

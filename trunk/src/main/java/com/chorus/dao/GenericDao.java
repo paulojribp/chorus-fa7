@@ -34,6 +34,10 @@ public class GenericDao<Model> {
 		return entityManager.createQuery("from " + entityClass.getSimpleName()).getResultList();
 	}
 	
+	public Model loadById(Object id) {
+		return entityManager.find(entityClass, id);
+	}
+	
 	public Class<Model> getEntityClass() {
 		return entityClass;
 	}
