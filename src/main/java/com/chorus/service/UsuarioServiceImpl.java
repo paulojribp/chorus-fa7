@@ -5,6 +5,7 @@ import br.com.caelum.vraptor.ioc.Component;
 import com.chorus.dao.UsuarioDao;
 import com.chorus.dto.UsuarioDto;
 import com.chorus.entity.Usuario;
+import com.chorus.exceptions.ErroAoSeguirException;
 import com.chorus.exceptions.UsuarioConfirmacaoSenhaException;
 import com.chorus.exceptions.UsuarioEmailInvalidoException;
 import com.chorus.exceptions.UsuarioJaExisteException;
@@ -55,6 +56,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario findByUsuario(Usuario usuario) {
 		return dao.findByUsuario(usuario);
+	}
+
+	@Override
+	public void seguir(Long userId, Long userASeguirId) throws ErroAoSeguirException {
+		if (!dao.userAlreadyFollow(userId, userASeguirId)) {
+			dao.seguir(userId, userASeguirId);
+		}
 	}
 
 }

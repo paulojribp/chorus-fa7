@@ -3,6 +3,8 @@
 
 <%@include file="/WEB-INF/jsp/cabecalho.jsp" %>
 
+	<script src="../js/index/index.js"></script>
+	
      <div class="container">
 		  <div class="row-fluid">
 		    <div class="span8">
@@ -12,15 +14,17 @@
 		    <div class="span4 well">
 		      <div>
 		      	<legend>Cadastrar Usuario</legend>
+		      		<div class="alert" id="cadastro-msg">
+		      			Teste
+		      		</div>
 					<form class="form-horizontal" action="<c:url value="/usuario/salvar" />" method="post">
-  				    	  <input class='span11' type="text" id="username" name ="usuario.username" placeholder="Nome" >
-  				    	  <input class='span11' type="text" id="email" name ="usuario.email" placeholder="Email" >
-  				    	  <input class='span11' type="text" id="login" name ="usuario.login" placeholder="Login" >
-  				    	  <input class='span11' type="password" id="senha" name ="usuario.senha" placeholder="Senha" >
-					      <button class="btn btn-primary span6" type="submit">Salvar</button>
-				  	  </div>
-				  </form>	
-		      
+  				    	  <input class='span11' type="text" id="nome" placeholder="Nome" >
+  				    	  <input class='span11' type="text" id="email" placeholder="Email" >
+  				    	  <input class='span11' type="text" id="username" placeholder="Username" >
+  				    	  <input class='span11' type="password" id="senha" placeholder="Senha" >
+  				    	  <input class='span11' type="password" id="confirmasenha" placeholder="Confirmar Senha" >
+					      <button class="btn btn-primary span6" id="btn-cadastrar" type="button">Salvar</button>
+					</form>
 		      </div>
 		    </div>
 		  </div>

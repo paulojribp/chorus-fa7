@@ -4,6 +4,8 @@ import com.chorus.entity.Usuario;
 
 public class UsuarioDto {
 
+	private String nome;
+	
 	private String username;
 	
 	private String email;
@@ -51,6 +53,14 @@ public class UsuarioDto {
 
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 }

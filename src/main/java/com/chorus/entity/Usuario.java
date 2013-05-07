@@ -21,10 +21,12 @@ public class Usuario implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_SEQ")
 	@SequenceGenerator(name="USUARIO_SEQ", sequenceName="USUARIO_SEQ", allocationSize=1)
-	private Integer	id;
+	private Long id;
 
 	@Column(unique=true)
 	private String username;
+	
+	private String nome;
 	
 	private String senha;
 	
@@ -36,11 +38,11 @@ public class Usuario implements Serializable{
 		this.username = username;
 	}
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -70,6 +72,14 @@ public class Usuario implements Serializable{
 
 	public boolean isValido(){
 		return (username != null && !username.isEmpty());
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

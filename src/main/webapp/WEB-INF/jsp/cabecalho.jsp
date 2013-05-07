@@ -59,9 +59,6 @@
 		                    <input class="span2" type="text" placeholder="Email">
 		                    <input class="span2" type="password" placeholder="Password">
 		                    <button type="submit" class="btn">Acessar</button>
-		                    <a class="btn btn-medium btn-primary" id="btn-modal-cadastrar">
-		                    	<i class="icon-user"> </i> Cadastrar
-		                    </a>
 		                </form>
 		            </div>
 		        </div>
@@ -70,30 +67,4 @@
 	</c:otherwise>
 </c:choose>
 
-	<div id="modal-cadastro" class="modal hide fade">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-			<h3>Cadastro de Usuário</h3>
-		</div>
-		<div class="modal-body">
-			<form id="form-cadastro" class="form-horizontal">
-				<div class="control-group">
-					<input type="text" id="inputUsername" placeholder="Nome de Usuário" style="width: 300px;" />
-				</div>
-				<div class="control-group">
-					<input type="text" id="inputEmail" placeholder="Email" style="width: 300px;" />
-				</div>
-				<div class="control-group">
-					<input type="text" id="inputSenha" placeholder="Senha" style="width: 300px;">
-				</div>
-				<div class="control-group">
-					<input type="text" id="inputConfirmaSenha" placeholder="Confirmação de Senha" style="width: 300px;">
-				</div>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<a href="#" id="btn-cancel-usuario" class="btn">Cancelar</a>
-			<a href="#" id="btn-criar-usuario" class="btn btn-primary">Criar Usuário</a>
-		</div>
-	</div>
+	
