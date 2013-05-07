@@ -51,7 +51,7 @@
 			                		${error.message}
 			                	</span>
 							</c:if>
-		                    <input id="loginUsername" name="usuario.username" class="span2" type="text" placeholder="Email">
+		                    <input id="loginUsername" name="usuario.username" class="span2" type="text" placeholder="Username">
 		                    <input id="loginSenha" name="usuario.senha" class="span2" type="password" placeholder="Password">
 		                    <button id="btn-usuario-login" type="submit" class="btn" >Acessar</button>
 		                </form>
