@@ -56,6 +56,10 @@ public class UsuarioDao extends GenericDao<Usuario>{
 			throw new ErroAoSeguirException("Não é possível seguir o usuário: " + userASeguir.getUsername(), e);
 		}
 	}
-	
+
+	public void refresh(Usuario user) {
+		user = loadById(user.getId());
+		entityManager.refresh(user);
+	}
 	
 }

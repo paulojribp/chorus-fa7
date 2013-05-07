@@ -1,17 +1,19 @@
 package com.chorus.action;
 
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 
+import com.chorus.auth.UserInfo;
 import com.chorus.dto.ReturnDto;
 import com.chorus.dto.UsuarioDto;
-import com.chorus.exceptions.ErroAoSeguirException;
-import com.chorus.service.UsuarioService;
-import com.chorus.dto.UsuarioLogado;
 import com.chorus.entity.Usuario;
+import com.chorus.exceptions.ErroAoSeguirException;
+import com.chorus.exceptions.UsuarioInexistenteException;
+import com.chorus.service.UsuarioService;
 
 @Resource
 @Path("/usuario")
@@ -20,33 +22,36 @@ public class UsuarioController {
 	private Result result;
 	
 	private UsuarioService usuarioService;
-	private UsuarioLogado usuarioLogado;
+	private UserInfo userInfo;
 	
-	public UsuarioController(UsuarioService usuarioService, Result result, UsuarioLogado usuarioLogado) {
+	public UsuarioController(UsuarioService usuarioService, Result result, UserInfo userInfo) {
 		this.usuarioService = usuarioService;
 		this.result = result;
-		this.usuarioLogado = usuarioLogado;
+		this.userInfo = userInfo;
 	}
 
-	@Post("/login")
+	@Post
+	@Path("/login")
     public void login(Usuario usuario) {
-		Usuario usuarioPersistido = usuarioService.findByUsuario(usuario);
-		if (usuarioPersistido == null) {
-			result.include("error", new ReturnDto(false, "usuario nao encontrado"));
-			System.out.println("Usuario nao encontrado");
-			usuarioLogado = null;
-			return;
+		try {
+			usuario = usuarioService.login(usuario);
+			userInfo.login(usuario);
+			result.include("usuarioLogado", new UsuarioDto(usuario.getUsername(), usuario.getNome()));
+			result.redirectTo(TimelineController.class).listar();
+		} catch (UsuarioInexistenteException e) {
+			result.include("error", new ReturnDto(false, "Usuario/Senha inválidos"));
+			result.redirectTo(IndexController.class).index();
+		} catch (Exception e) {
+			result.include("error", new ReturnDto(false, "Erro na solicitação do servidor"));
 		}
-
-		if (!usuarioPersistido.getSenha().equals(usuario.getSenha())) {
-			result.include("error", new ReturnDto(false, "Senha incorreta"));
-			usuarioLogado = null;
-			return;
-		}
-		
-		usuarioLogado.logar(usuarioPersistido);
-		result.include("usuarioLogado", usuarioLogado);
     }
+	
+	@Get
+	@Path("/logout")
+	public void logout() {
+		userInfo.logout();
+		result.redirectTo(IndexController.class).index();
+	}
 	
 	@Post
 	@Path("/salvar")
@@ -66,8 +71,20 @@ public class UsuarioController {
 	@Post
 	@Path("/seguir")
 	public void seguir(Long usuarioASeguirId) throws ErroAoSeguirException {
-		usuarioService.seguir(1l, usuarioASeguirId);
+		usuarioService.seguir(userInfo.getUser().getId(), usuarioASeguirId);
 		result.nothing();
 	}
 
+	@Post
+	@Path("/loggedUser")
+	public void loggedUser() {
+		UsuarioDto u = new UsuarioDto();
+		
+		if (userInfo.getUser() != null) {
+			u = new UsuarioDto(userInfo.getUser().getUsername(), userInfo.getUser().getNome());
+		}
+		
+		result.use(Results.json()).from(u).serialize();
+	}
+	
 }

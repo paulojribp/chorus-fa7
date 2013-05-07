@@ -35,39 +35,30 @@
 
         <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
 
-<c:choose>
-	<c:when test="${not empty usuarioLogado}">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-		    <div class="navbar-inner">
-		        <div class="container">
-		            <a class="brand" href="#">Chorus</a>
-		            <div class="nav-collapse collapse">
-		            	<label class="label label-success">Usuário: ${usuarioLogado.usuario.username} </label>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-	</c:when>
-	
-	<c:otherwise>
-		<div class="navbar navbar-inverse navbar-fixed-top">
-		    <div class="navbar-inner">
-		        <div class="container">
-		            <a class="brand" href="#">Chorus</a>
-		            <div class="nav-collapse collapse">
-		                <form class="navbar-form pull-right">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	    <div class="navbar-inner">
+	        <div class="container">
+	            <a class="brand" href="#">Chorus</a>
+	            <div class="nav-collapse collapse pull-right">
+	            	<div id="user-data" class="hide logged-user">
+	            		<div class="span4 text-right" id="logged-username"> </div><a href="../usuario/logout">Logout</a>
+	            	</div>
+	            	
+	            	<div id="login-form" class="hide">
+	            		<form class="navbar-form pull-right" method="post" action="../usuario/login">
 		                	<c:if test="${not empty error}">
-			                	<label id="loginErrorMsg" class="label label-important">${error}</label>
+			                	<span id="loginErrorMsg" class="alert alert-error">
+			                		${error.message}
+			                	</span>
 							</c:if>
-		                    <input id="loginUsername" class="span2" type="text" placeholder="Email">
-		                    <input id="loginSenha" class="span2" type="password" placeholder="Password">
+		                    <input id="loginUsername" name="usuario.username" class="span2" type="text" placeholder="Email">
+		                    <input id="loginSenha" name="usuario.senha" class="span2" type="password" placeholder="Password">
 		                    <button id="btn-usuario-login" type="submit" class="btn" >Acessar</button>
 		                </form>
 		            </div>
-		        </div>
-		    </div>
-		</div>
-	</c:otherwise>
-</c:choose>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 
 	

@@ -14,6 +14,14 @@ public class UsuarioDto {
 	
 	private String confirmaSenha;
 
+	public UsuarioDto() {
+	}
+	
+	public UsuarioDto(String username, String nome) {
+		this.username = username;
+		this.nome = nome;
+	}
+
 	public Usuario getUsuario() {
 		Usuario u = new Usuario();
 		u.setUsername(username);

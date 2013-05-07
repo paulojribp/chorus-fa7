@@ -10,3 +10,14 @@
 .form-horizontal .span11 {
 	margin-bottom: 10px;
 }
+
+.logged-user {
+	color: #ffffff;
+	margin-right: 7px;
+	margin-top: 8px;
+}
+
+.text-right {
+	text-align: right;
+	margin-right: 12px;
+}
