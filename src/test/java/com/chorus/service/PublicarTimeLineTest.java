@@ -9,12 +9,14 @@
 
 package com.chorus.service;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
+import com.chorus.dao.ChorusDao;
+import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
@@ -26,7 +28,6 @@ import com.chorus.entity.Usuario;
  *          $Date: $ <br>
  *          $Author: $
  */
-@Ignore
 public class PublicarTimeLineTest {
 
 	private static TimeLineService	service;
@@ -34,7 +35,10 @@ public class PublicarTimeLineTest {
 	@BeforeClass
 	public static void beforeClass() {
 		
-//		service = new TimeLineServiceImpl();
+		ChorusDao chorusDao = mock(ChorusDao.class);
+		TimelineDao timelineDao = mock(TimelineDao.class);;
+		service = new TimeLineServiceImpl(timelineDao, chorusDao);
+		
 	}
 
 	
