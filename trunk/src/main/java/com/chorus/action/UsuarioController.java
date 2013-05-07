@@ -8,6 +8,7 @@ import br.com.caelum.vraptor.view.Results;
 
 import com.chorus.dto.ReturnDto;
 import com.chorus.dto.UsuarioDto;
+import com.chorus.exceptions.ErroAoSeguirException;
 import com.chorus.service.UsuarioService;
 
 @Resource
@@ -38,5 +39,11 @@ public class UsuarioController {
 		result.use(Results.json()).from(returndto).serialize();
 	}
 
+	@Post
+	@Path("/seguir")
+	public void seguir(Long usuarioASeguirId) throws ErroAoSeguirException {
+		usuarioService.seguir(1l, usuarioASeguirId);
+		result.nothing();
+	}
 
 }

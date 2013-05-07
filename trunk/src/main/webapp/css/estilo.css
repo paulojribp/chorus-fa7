@@ -6,3 +6,7 @@
 .text1 {
   color: #FFFFFF;
 }
+
+.form-horizontal .span11 {
+	margin-bottom: 10px;
+}
