@@ -44,6 +44,7 @@ public class TimelineController {
 		result.redirectTo(TimelineController.class).listar();
 	}
 
+	@Path("/listar")
 	public void listar() throws Exception {
 //		result.include("chorinhos", chorusService.loadAll());
 	}

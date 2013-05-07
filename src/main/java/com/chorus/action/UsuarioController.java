@@ -10,6 +10,8 @@ import com.chorus.dto.ReturnDto;
 import com.chorus.dto.UsuarioDto;
 import com.chorus.exceptions.ErroAoSeguirException;
 import com.chorus.service.UsuarioService;
+import com.chorus.dto.UsuarioLogado;
+import com.chorus.entity.Usuario;
 
 @Resource
 @Path("/usuario")
@@ -18,12 +20,34 @@ public class UsuarioController {
 	private Result result;
 	
 	private UsuarioService usuarioService;
-
-	public UsuarioController(UsuarioService usuarioService, Result result) {
+	private UsuarioLogado usuarioLogado;
+	
+	public UsuarioController(UsuarioService usuarioService, Result result, UsuarioLogado usuarioLogado) {
 		this.usuarioService = usuarioService;
 		this.result = result;
+		this.usuarioLogado = usuarioLogado;
 	}
 
+	@Post("/login")
+    public void login(Usuario usuario) {
+		Usuario usuarioPersistido = usuarioService.findByUsuario(usuario);
+		if (usuarioPersistido == null) {
+			result.include("error", new ReturnDto(false, "usuario nao encontrado"));
+			System.out.println("Usuario nao encontrado");
+			usuarioLogado = null;
+			return;
+		}
+
+		if (!usuarioPersistido.getSenha().equals(usuario.getSenha())) {
+			result.include("error", new ReturnDto(false, "Senha incorreta"));
+			usuarioLogado = null;
+			return;
+		}
+		
+		usuarioLogado.logar(usuarioPersistido);
+		result.include("usuarioLogado", usuarioLogado);
+    }
+	
 	@Post
 	@Path("/salvar")
 	public void salvar(UsuarioDto usuario) throws Exception {

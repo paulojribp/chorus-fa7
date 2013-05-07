@@ -5,14 +5,6 @@ import java.util.List;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
-/**
- * 
- * @author kete@sagaranatech.com
- * @since Apr 15, 2013
- * @version $Revision:  $ <br>
- *          $Date:  $ <br> 
- *          $Author:  $
- */
 public interface TimeLineService {
 
 	/**

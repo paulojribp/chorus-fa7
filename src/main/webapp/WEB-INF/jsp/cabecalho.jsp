@@ -36,19 +36,19 @@
         <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
 
 <c:choose>
-	<c:when test="${not empty usuario}">
+	<c:when test="${not empty usuarioLogado}">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 		    <div class="navbar-inner">
 		        <div class="container">
 		            <a class="brand" href="#">Chorus</a>
 		            <div class="nav-collapse collapse">
-		            	Usuário:
-		                ${usuario.nome}
+		            	<label class="label label-success">Usuário: ${usuarioLogado.usuario.username} </label>
 		            </div>
 		        </div>
 		    </div>
 		</div>
 	</c:when>
+	
 	<c:otherwise>
 		<div class="navbar navbar-inverse navbar-fixed-top">
 		    <div class="navbar-inner">
@@ -56,9 +56,12 @@
 		            <a class="brand" href="#">Chorus</a>
 		            <div class="nav-collapse collapse">
 		                <form class="navbar-form pull-right">
-		                    <input class="span2" type="text" placeholder="Email">
-		                    <input class="span2" type="password" placeholder="Password">
-		                    <button type="submit" class="btn">Acessar</button>
+		                	<c:if test="${not empty error}">
+			                	<label id="loginErrorMsg" class="label label-important">${error}</label>
+							</c:if>
+		                    <input id="loginUsername" class="span2" type="text" placeholder="Email">
+		                    <input id="loginSenha" class="span2" type="password" placeholder="Password">
+		                    <button id="btn-usuario-login" type="submit" class="btn" >Acessar</button>
 		                </form>
 		            </div>
 		        </div>

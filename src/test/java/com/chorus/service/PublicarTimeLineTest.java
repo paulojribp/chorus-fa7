@@ -1,12 +1,3 @@
-/*
- * Copyright 2012 Sagarana Tech.  All rigths reserved.
- *
- * This software is the confidential and proprietary information of
- * Sagarana Tech ("Confidential Information"). You shall not disclose such
- * Confidential Information and shall use it only in accordance with the
- * terms of the license agreement you entered into with Sagarana Tech.
- */
-
 package com.chorus.service;
 
 import static junit.framework.Assert.assertEquals;
@@ -20,14 +11,6 @@ import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
-/**
- * 
- * @author kete@sagaranatech.com
- * @since Apr 15, 2013
- * @version $Revision: $ <br>
- *          $Date: $ <br>
- *          $Author: $
- */
 public class PublicarTimeLineTest {
 
 	private static TimeLineService	service;

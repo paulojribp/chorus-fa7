@@ -1,7 +1,6 @@
 package com.chorus.dao;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.Query;
 
