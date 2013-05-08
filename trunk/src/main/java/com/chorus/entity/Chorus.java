@@ -1,5 +1,7 @@
 package com.chorus.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 
@@ -25,6 +29,9 @@ public class Chorus {
 	@ManyToOne
 	@JoinColumn(name = "usuarioid")
 	private Usuario	usuario;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date datahora;
 
 	public Integer getId() {
 		return id;
@@ -49,4 +56,13 @@ public class Chorus {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public Date getDatahora() {
+		return datahora;
+	}
+
+	public void setDatahora(Date datahora) {
+		this.datahora = datahora;
+	}
+	
 }
