@@ -1,10 +1,3 @@
-$(document).ready(function() {
-	$("#login-form").hide();
-	$("#user-data").hide();
-	
-	Chorus.verifyUserLogin();
-});
-
 var Chorus = {};
 Chorus.verifyUserLogin = function() {
 	$.ajax({
@@ -26,3 +19,12 @@ Chorus.verifyUserLogin = function() {
 		}
 	});
 };
+
+
+
+$(document).ready(function() {
+	$("#login-form").hide();
+	$("#user-data").hide();
+	
+	Chorus.verifyUserLogin();
+});

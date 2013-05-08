@@ -21,3 +21,43 @@
 	text-align: right;
 	margin-right: 12px;
 }
+
+.container-fluid {
+	background-color: #333;
+	padding-top: 8px;
+}
+
+#escrever-chorinho {
+	width: 97%;
+}
+
+.avatar {
+	width: 48px;
+	height: 48px;
+}
+
+#chorinhos-list .span-nome {
+	min-height: 18px;
+	font-size: 11px;
+	color: #444444;
+	font-weight: bold;
+	width: 80%;
+}
+#chorinhos-list .span-username {
+	min-height: 18px;
+	color: #999999;
+	float: left;
+	width: 30%;
+}
+#chorinhos-list .span-avatar {
+	width: 52px;
+	height: 52px;
+	text-align: center;
+	padding-top: 1px;
+	border: 1px solid #cacaca;
+}
+#chorinhos-list .chorus {
+	margin-left: 12px;
+	border-top: 1px solid #dadada;
+	padding-top: 4px;
+}

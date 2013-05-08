@@ -1,22 +1,29 @@
 package com.chorus.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.vraptor.ioc.Component;
 
 import com.chorus.dao.ChorusDao;
+import com.chorus.dto.ChoruDto;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
+import com.chorus.util.ProfilePictureFinder;
 
 @Component
 public class ChorusServiceImpl implements ChorusService {
 
 	private ChorusDao dao;
 	private UsuarioService usuarioService;
+	private ProfilePictureFinder pictureFinder;
 	
-	public ChorusServiceImpl(ChorusDao chorusDao, UsuarioService usuarioService) {
+	private static final String DEFAULT_IMAGE = "images/defaultimage.jpg";
+	
+	public ChorusServiceImpl(ChorusDao chorusDao, UsuarioService usuarioService, ProfilePictureFinder pictureFinder) {
 		this.usuarioService = usuarioService;
 		this.dao = chorusDao;
+		this.pictureFinder = pictureFinder;
 	}
 	
 	@Override
@@ -29,9 +36,6 @@ public class ChorusServiceImpl implements ChorusService {
 		
 		Usuario usuario = (Usuario) usuarioService.findByUsuario(chorus.getUsuario());
 		chorus.setUsuario(usuario);
-		//TODO VALIDAR O QUE??
-		//Usuario usuario = chorus.getUsuario();
-		//validar(usuario);
 		
 		String mensagem = chorus.getMensagem();
 		
@@ -47,8 +51,40 @@ public class ChorusServiceImpl implements ChorusService {
 	}
 
 	@Override
-	public List<Chorus> findByUsuario(Usuario usuario) {
-		return dao.findByUsuario(usuario);
+	public List<ChoruDto> findByUsuario(Usuario usuario) {
+		List<Chorus> chorus = dao.findByUsuario(usuario);
+		List<ChoruDto> chorusDto = new ArrayList<ChoruDto>();
+		
+		for (Chorus c : chorus) {
+			try {
+				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
+						c.getUsuario().getNome(), pictureFinder.getPictureFromEmail(c.getUsuario().getEmail()),
+						c.getDatahora()));
+			} catch (Exception e) {
+				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
+						c.getUsuario().getNome(), DEFAULT_IMAGE, c.getDatahora()));
+			}
+		}
+		
+		return chorusDto;
+	}
+	
+	public List<ChoruDto> retrieveTimeline(Usuario usuario) {
+		List<Chorus> chorus = dao.retrieveTimeline(usuario);
+		List<ChoruDto> chorusDto = new ArrayList<ChoruDto>();
+		
+		for (Chorus c : chorus) {
+			try {
+				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
+						c.getUsuario().getNome(), pictureFinder.getPictureFromEmail(c.getUsuario().getEmail()),
+						c.getDatahora()));
+			} catch (Exception e) {
+				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
+						c.getUsuario().getNome(), DEFAULT_IMAGE, c.getDatahora()));
+			}
+		}
+		
+		return chorusDto;
 	}
 
 }

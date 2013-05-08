@@ -37,7 +37,7 @@ public class UsuarioController {
 			usuario = usuarioService.login(usuario);
 			userInfo.login(usuario);
 			result.include("usuarioLogado", new UsuarioDto(usuario.getUsername(), usuario.getNome()));
-			result.redirectTo(TimelineController.class).listar();
+			result.redirectTo(TimelineController.class).index();
 		} catch (UsuarioInexistenteException e) {
 			result.include("error", new ReturnDto(false, "Usuario/Senha inválidos"));
 			result.redirectTo(IndexController.class).index();
