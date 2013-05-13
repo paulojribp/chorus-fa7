@@ -9,6 +9,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import br.com.caelum.vraptor.util.StringUtils;
+
 public class ShortUrl {
 	
 	/***
@@ -64,7 +66,10 @@ public class ShortUrl {
 		return urlsEncurtar;
 	}
 	
-	public String formataTexto(String texto){
+	public String formataTexto(String texto) throws Exception{
+		
+		if(texto == null || texto == "")
+			throw new Exception("Texto é Requerido");
 		
 		/*RETORNANDO TODAS AS URLS NO TEXTO*/
 		ArrayList<String> urlsGrande = this.retornaUrls(texto);
@@ -93,9 +98,13 @@ public class ShortUrl {
 	public static void main(String[] args) {
 		ShortUrl url = new ShortUrl();
 		
-		String texto = "Isso é apenas um teste de Twitter com url http://www.d7d.com.br onde vou postar o site https://www.google.org.br onde este site será acessado por uma url curta";
+		String texto = "http://www.d7d.com.br";
 		
-		texto = url.formataTexto(texto);
+		try {
+			texto = url.formataTexto(texto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		System.out.println(texto);
 		

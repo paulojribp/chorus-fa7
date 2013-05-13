@@ -29,9 +29,9 @@
 		    </div>
 		  </div>
 		</div>
-            <footer>
-                <p>&copy; Company 2012</p>
-            </footer>
+		<div class="footer">
+            <p>&copy; Chorus 2013</p>
+		</div>
         <script src="../js/vendor/bootstrap.min.js"></script>
     </body>
 </html>
