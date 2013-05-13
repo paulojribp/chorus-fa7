@@ -37,7 +37,7 @@ Timeline.listarChorus = function() {
 				template = template.replace(Timeline.AVATAR, chorus.gravatarUrl);
 				template = template.replace(Timeline.USERNAME, chorus.username);
 				template = template.replace(Timeline.NOMEUSUARIO, chorus.nome);
-				template = template.replace(Timeline.CHORUSTIME, datahora.$);
+				template = template.replace(Timeline.CHORUSTIME, chorus.datatime);
 				template = template.replace(Timeline.CHORUSMENSAGEM, chorus.mensagem);
 				
 				chorinhosList.append(template);

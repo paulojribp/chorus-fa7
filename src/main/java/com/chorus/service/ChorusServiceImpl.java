@@ -20,7 +20,7 @@ public class ChorusServiceImpl implements ChorusService {
 	private UsuarioService usuarioService;
 	private ProfilePictureFinder pictureFinder;
 	
-	private static final String DEFAULT_IMAGE = "images/defaultimage.jpg";
+	private static final String DEFAULT_IMAGE = "../images/defaultuser.png";
 	
 	public ChorusServiceImpl(ChorusDao chorusDao, UsuarioService usuarioService, ProfilePictureFinder pictureFinder) {
 		this.usuarioService = usuarioService;
