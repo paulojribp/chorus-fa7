@@ -1,6 +1,6 @@
 package com.chorus.entity;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +31,7 @@ public class Chorus {
 	private Usuario	usuario;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date datahora;
+	private Calendar datahora;
 
 	public Integer getId() {
 		return id;
@@ -57,11 +57,11 @@ public class Chorus {
 		this.usuario = usuario;
 	}
 
-	public Date getDatahora() {
+	public Calendar getDatahora() {
 		return datahora;
 	}
 
-	public void setDatahora(Date datahora) {
+	public void setDatahora(Calendar datahora) {
 		this.datahora = datahora;
 	}
 	

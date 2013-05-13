@@ -9,6 +9,7 @@ import com.chorus.dao.ChorusDao;
 import com.chorus.dto.ChoruDto;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
+import com.chorus.util.DatetimeUtil;
 import com.chorus.util.ProfilePictureFinder;
 
 @Component
@@ -59,10 +60,10 @@ public class ChorusServiceImpl implements ChorusService {
 			try {
 				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
 						c.getUsuario().getNome(), pictureFinder.getPictureFromEmail(c.getUsuario().getEmail()),
-						c.getDatahora()));
+						DatetimeUtil.timeAgo(c.getDatahora())));
 			} catch (Exception e) {
 				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
-						c.getUsuario().getNome(), DEFAULT_IMAGE, c.getDatahora()));
+						c.getUsuario().getNome(), DEFAULT_IMAGE, DatetimeUtil.timeAgo(c.getDatahora())));
 			}
 		}
 		
@@ -77,10 +78,10 @@ public class ChorusServiceImpl implements ChorusService {
 			try {
 				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
 						c.getUsuario().getNome(), pictureFinder.getPictureFromEmail(c.getUsuario().getEmail()),
-						c.getDatahora()));
+						DatetimeUtil.timeAgo(c.getDatahora())));
 			} catch (Exception e) {
 				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
-						c.getUsuario().getNome(), DEFAULT_IMAGE, c.getDatahora()));
+						c.getUsuario().getNome(), DEFAULT_IMAGE, DatetimeUtil.timeAgo(c.getDatahora())));
 			}
 		}
 		

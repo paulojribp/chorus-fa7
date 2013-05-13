@@ -35,14 +35,7 @@
 			    	<div class="well">
 			    		<h3>Chorinhos</h3>
 			    		<div id="chorinhos-list" class="row">
-			    			<div class="span12 chorus">
-			    				<span class="span-avatar"><img alt="perfil" src="../images/defaultuser.png" class="avatar" /></span>
-			    				<span class="span-nome">
-			    					Nome Usuario
-				    				<span class="span-username">@username</span>
-			    				</span>
-			    				<span class="span9">Mensagem de Choru</span>
-			    			</div>
+			    			
 			    		</div>
 			    	</div>
 			    </div>
