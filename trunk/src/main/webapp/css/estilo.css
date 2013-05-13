@@ -11,6 +11,16 @@
 	margin-bottom: 10px;
 }
 
+.footer {
+	color: #FFF;
+	text-align: center;
+	margin-top: 70px;
+}
+
+.usuario_estilo{
+	margin-bottom: 10px;
+	color: #FFFFFF;
+}
 .logged-user {
 	color: #ffffff;
 	margin-right: 7px;

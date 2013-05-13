@@ -11,6 +11,7 @@ import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 import com.chorus.util.DatetimeUtil;
 import com.chorus.util.ProfilePictureFinder;
+import com.chorus.util.ShortUrl;
 
 @Component
 public class ChorusServiceImpl implements ChorusService {
@@ -35,6 +36,8 @@ public class ChorusServiceImpl implements ChorusService {
 	@Override
 	public void chorar(Chorus chorus) throws Exception {
 		
+		ShortUrl url = new ShortUrl();
+		
 		Usuario usuario = (Usuario) usuarioService.findByUsuario(chorus.getUsuario());
 		chorus.setUsuario(usuario);
 		
@@ -47,6 +50,8 @@ public class ChorusServiceImpl implements ChorusService {
 		if(mensagem != null && mensagem.trim().length() > 144){
 			throw new Exception("Mensagem nao pode exceder 144 caracteres.");
 		}
+		
+		chorus.setMensagem(url.formataTexto(chorus.getMensagem()));
 		
 		dao.create(chorus);
 	}
