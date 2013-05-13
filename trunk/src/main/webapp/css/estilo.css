@@ -36,6 +36,11 @@
 	height: 48px;
 }
 
+#chorinhos-list .span1 {
+	min-height: 18px;
+	color: #444444;
+	font-size: 11px;
+}
 #chorinhos-list .span-nome {
 	min-height: 18px;
 	font-size: 11px;
@@ -43,11 +48,8 @@
 	font-weight: bold;
 	width: 80%;
 }
-#chorinhos-list .span-username {
-	min-height: 18px;
+.span-username {
 	color: #999999;
-	float: left;
-	width: 30%;
 }
 #chorinhos-list .span-avatar {
 	width: 52px;

@@ -1,13 +1,10 @@
 package com.chorus.dto;
 
-import java.util.Date;
-
-
 public class ChoruDto {
 
 	private String mensagem;
 	
-	private Date datahora;
+	private String datahora;
 	
 	private String username;
 	
@@ -19,7 +16,7 @@ public class ChoruDto {
 	}
 	
 	public ChoruDto(String mensagem, String username, String nome,
-			String gravatarUrl, Date datahora) {
+			String gravatarUrl, String datahora) {
 		super();
 		this.mensagem = mensagem;
 		this.username = username;
@@ -60,11 +57,11 @@ public class ChoruDto {
 		this.gravatarUrl = gravatarUrl;
 	}
 
-	public Date getDatahora() {
+	public String getDatahora() {
 		return datahora;
 	}
 
-	public void setDatahora(Date datahora) {
+	public void setDatahora(String datahora) {
 		this.datahora = datahora;
 	}
 	
