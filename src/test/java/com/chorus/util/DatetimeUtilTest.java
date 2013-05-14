@@ -13,7 +13,7 @@ public class DatetimeUtilTest {
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.HOUR_OF_DAY, -2);
 		
-		assertEquals("2h ago", DatetimeUtil.timeAgo(c));
+		assertEquals("2h", DatetimeUtil.timeAgo(c));
 	}
 	
 	@Test
@@ -21,7 +21,7 @@ public class DatetimeUtilTest {
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.MINUTE, -10);
 		
-		assertEquals("10m ago", DatetimeUtil.timeAgo(c));
+		assertEquals("10m", DatetimeUtil.timeAgo(c));
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class DatetimeUtilTest {
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.SECOND, -3);
 		
-		assertEquals("3s ago", DatetimeUtil.timeAgo(c));
+		assertEquals("3s", DatetimeUtil.timeAgo(c));
 	}
 	
 }

@@ -27,6 +27,7 @@ public class UsuarioDto {
 		u.setUsername(username);
 		u.setEmail(email);
 		u.setSenha(senha);
+		u.setNome(nome);
 		
 		return u;
 	}

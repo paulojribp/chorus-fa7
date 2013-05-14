@@ -68,6 +68,9 @@
 	</aop:config>
 	<tx:advice id="txAdvice" transaction-manager="myTxManager">
 		<tx:attributes>
+			<tx:method name="retrieve*" propagation="NOT_SUPPORTED" read-only="true" />
+			<tx:method name="load*" propagation="NOT_SUPPORTED" read-only="true" />
+			<tx:method name="find*" propagation="NOT_SUPPORTED" read-only="true" />
 			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
