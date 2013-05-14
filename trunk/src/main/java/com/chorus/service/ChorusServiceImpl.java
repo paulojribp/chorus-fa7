@@ -1,6 +1,7 @@
 package com.chorus.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.caelum.vraptor.ioc.Component;
@@ -40,6 +41,8 @@ public class ChorusServiceImpl implements ChorusService {
 		
 		Usuario usuario = (Usuario) usuarioService.findByUsuario(chorus.getUsuario());
 		chorus.setUsuario(usuario);
+		chorus.setDatahora(Calendar.getInstance());
+		chorus.setMensagem(url.formataTexto(chorus.getMensagem()));
 		
 		String mensagem = chorus.getMensagem();
 		
@@ -50,8 +53,6 @@ public class ChorusServiceImpl implements ChorusService {
 		if(mensagem != null && mensagem.trim().length() > 144){
 			throw new Exception("Mensagem nao pode exceder 144 caracteres.");
 		}
-		
-		chorus.setMensagem(url.formataTexto(chorus.getMensagem()));
 		
 		dao.create(chorus);
 	}
