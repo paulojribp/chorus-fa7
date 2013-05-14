@@ -22,11 +22,11 @@ public class DatetimeUtil {
 		if (h > 24)
 			return new SimpleDateFormat("dd/MM").format(datetime.getTime());
 		else if (h <= 24 && h > 1)
-			return h+"h ago";
+			return h+"h";
 		else if (m > 0)
-			return m+"m ago";
+			return m+"m";
 		else
-			return s+"s ago";
+			return s+"s";
 		
 	}
 	
