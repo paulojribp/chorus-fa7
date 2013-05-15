@@ -1,5 +1,8 @@
 package com.chorus.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.caelum.vraptor.ioc.Component;
 
 import com.chorus.dao.UsuarioDao;
@@ -12,14 +15,18 @@ import com.chorus.exceptions.UsuarioInexistenteException;
 import com.chorus.exceptions.UsuarioJaExisteException;
 import com.chorus.exceptions.UsuarioSenhaInvalidaException;
 import com.chorus.exceptions.UsuarioUsernameInvalidoException;
+import com.chorus.util.ProfilePictureFinder;
 
 @Component
 public class UsuarioServiceImpl implements UsuarioService {
 
 	private UsuarioDao dao;
 	
-	public UsuarioServiceImpl(UsuarioDao usuarioDao) {
-		dao = usuarioDao;
+	private ProfilePictureFinder pictureFinder;
+	
+	public UsuarioServiceImpl(UsuarioDao usuarioDao, ProfilePictureFinder pictureFinder) {
+		this.dao = usuarioDao;
+		this.pictureFinder = pictureFinder;
 	}
 
 	private void validar(UsuarioDto usuario) throws Exception {
@@ -81,6 +88,27 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new UsuarioInexistenteException();
 		
 		return usuario;
+	}
+
+	@Override
+	public List<UsuarioDto> findSeguindo(Usuario user) {
+		List<Usuario> users = dao.findSeguindo(user);
+		List<UsuarioDto> usersDto = new ArrayList<UsuarioDto>();
+		
+		if (users != null)
+			for (Usuario u : users) {
+				UsuarioDto udto = new UsuarioDto(u.getUsername(),u.getNome());
+				udto.setSeguindo(true);
+				udto.setSeguido(dao.findEstaSeguindo(u, user));
+				try {
+					udto.setGravatarUrl(pictureFinder.getPictureFromEmail(u.getEmail()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				usersDto.add(udto);
+			}
+		
+		return usersDto;
 	}
 
 }

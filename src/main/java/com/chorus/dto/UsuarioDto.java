@@ -14,7 +14,11 @@ public class UsuarioDto {
 	
 	private String confirmaSenha;
 	
-	private String			gravatarUrl;
+	private String gravatarUrl;
+	
+	private boolean seguido;
+	
+	private boolean seguindo;
 
 	public UsuarioDto() {
 	}
@@ -22,6 +26,12 @@ public class UsuarioDto {
 	public UsuarioDto(String username, String nome) {
 		this.username = username;
 		this.nome = nome;
+	}
+
+	public UsuarioDto(Usuario u) {
+		username = u.getUsername();
+		email = u.getEmail();
+		nome = u.getNome();
 	}
 
 	public Usuario getUsuario() {
@@ -80,6 +90,22 @@ public class UsuarioDto {
 
 	public void setGravatarUrl(String gravatarUrl) {
 		this.gravatarUrl = gravatarUrl;
+	}
+
+	public boolean isSeguido() {
+		return seguido;
+	}
+
+	public void setSeguido(boolean seguido) {
+		this.seguido = seguido;
+	}
+
+	public boolean isSeguindo() {
+		return seguindo;
+	}
+
+	public void setSeguindo(boolean seguindo) {
+		this.seguindo = seguindo;
 	}
 	
 }

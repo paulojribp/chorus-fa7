@@ -11,16 +11,19 @@ import com.chorus.exceptions.UsuarioConfirmacaoSenhaException;
 import com.chorus.exceptions.UsuarioEmailInvalidoException;
 import com.chorus.exceptions.UsuarioSenhaInvalidaException;
 import com.chorus.exceptions.UsuarioUsernameInvalidoException;
+import com.chorus.util.ProfilePictureFinder;
 
 public class SalvarUsuarioTest {
 	
 	private UsuarioService service;
 	private UsuarioDao usuarioDao;
+	private ProfilePictureFinder pictureFinder;
 
 	@Before
 	public void beforeClass() {
 		usuarioDao = mock(UsuarioDao.class);
-		service = new UsuarioServiceImpl(usuarioDao);
+		pictureFinder = new ProfilePictureFinder();
+		service = new UsuarioServiceImpl(usuarioDao, pictureFinder);
 	}
 	
 	private UsuarioDto getUsuarioExemplo() {

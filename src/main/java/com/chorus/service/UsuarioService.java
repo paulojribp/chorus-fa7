@@ -1,5 +1,7 @@
 package com.chorus.service;
 
+import java.util.List;
+
 import com.chorus.dto.UsuarioDto;
 import com.chorus.entity.Usuario;
 import com.chorus.exceptions.ErroAoSeguirException;
@@ -16,5 +18,7 @@ public interface UsuarioService {
 	void refresh(Usuario user);
 
 	Usuario login(Usuario usuario) throws UsuarioInexistenteException;
+
+	List<UsuarioDto> findSeguindo(Usuario user);
 
 }

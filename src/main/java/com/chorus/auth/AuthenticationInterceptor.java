@@ -16,6 +16,8 @@ import br.com.caelum.vraptor.resource.ResourceMethod;
 import com.chorus.action.IndexController;
 import com.chorus.action.UsuarioController;
 import com.chorus.dto.ReturnDto;
+import com.chorus.dto.UsuarioDto;
+import com.chorus.entity.Usuario;
 import com.chorus.service.UsuarioService;
 
 @Intercepts
@@ -25,13 +27,21 @@ public class AuthenticationInterceptor implements Interceptor {
 	private final UsuarioService usuarioService;
 	private final Result result;
 	
-	@SuppressWarnings("unchecked")
-	private final List<Class<?>> allowedClasses = Arrays.asList(UsuarioController.class, IndexController.class);
+	private List<Method> allowedMethods;
 	
 	public AuthenticationInterceptor(UserInfo userInfo, UsuarioService usuarioService, Result result) {
 		this.userInfo = userInfo;
 		this.usuarioService = usuarioService;
 		this.result = result;
+		try {
+			allowedMethods = Arrays.asList(
+					UsuarioController.class.getMethod("salvar", UsuarioDto.class),
+					UsuarioController.class.getMethod("login", Usuario.class),
+					UsuarioController.class.getMethod("loggedUser"),
+					IndexController.class.getMethod("index"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -48,8 +58,8 @@ public class AuthenticationInterceptor implements Interceptor {
     }
 	
 	private boolean notLogin(ResourceMethod method) {
-		for (Class<?> clazz : allowedClasses) {
-			if (method.getMethod().getDeclaringClass().equals(clazz)) {
+		for (Method m : allowedMethods) {
+			if (method.getMethod().equals(m)) {
 				return false;
 			}
 		}
@@ -73,3 +83,4 @@ public class AuthenticationInterceptor implements Interceptor {
 	}
 
 }
+

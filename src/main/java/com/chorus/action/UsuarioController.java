@@ -2,6 +2,7 @@ package com.chorus.action;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -82,6 +83,17 @@ public class UsuarioController {
 	public void seguir(@RequestParam Long usuarioASeguirId) throws ErroAoSeguirException {
 		usuarioService.seguir(userInfo.getUser().getId(), usuarioASeguirId);
 		result.nothing();
+	}
+	
+	@Path("/seguindo")
+	public void seguindo() {
+		
+	}
+	
+	@Post
+	public void listarSeguindo() {
+		List<UsuarioDto> users = usuarioService.findSeguindo(userInfo.getUser());
+		result.use(Results.json()).from(users).serialize();
 	}
 
 	@Post
