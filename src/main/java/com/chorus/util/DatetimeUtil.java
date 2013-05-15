@@ -7,6 +7,9 @@ import java.util.TimeZone;
 public class DatetimeUtil {
 
 	public static String timeAgo(Calendar datetime) {
+		if(datetime == null){
+			return null;
+		}
 		Calendar c = Calendar.getInstance();
 		c.setTimeZone(TimeZone.getTimeZone("GMT0"));
 		datetime.setTimeZone(TimeZone.getTimeZone("GMT0"));
