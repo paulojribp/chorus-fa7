@@ -3,25 +3,45 @@ $(document).ready(function () {
 		Timeline.chorar();
 	});
 	
+	$("#chorinho-length").val(Timeline.msgSize);
+	var escreverTxtarea = $("#escrever-chorinho");
+	escreverTxtarea.keyup(function(key) {
+		var size = escreverTxtarea.val().length;
+		$("#chorinho-length").text(Timeline.msgSize - size);
+		if (size > Timeline.msgSize) {
+			$("#chorinho-length").addClass('txtred');
+		} else {
+			$("#chorinho-length").removeClass('txtred');
+		}
+	});
+	
 	Timeline.listarChorus();
 });
 
 var Timeline = {};
+Timeline.msgSize = 144;
 Timeline.chorar = function() {
 	var choru = $("#escrever-chorinho").val();
 	
-	$.ajax({
-		url: '../timeline/publicar',
-		method: 'POST',
-		data: {"chorus.mensagem" : choru},
-		success: function(data) {
-			$("#escrever-chorinho-msg").text('Você chorou com sucesso.');
-			$("#escrever-chorinho-msg").show();
-		},
-		error: function(err) {
-			console.log(err);
-		}
-	});
+	if (choru.length <= Timeline.msgSize) {
+		$.ajax({
+			url: '../timeline/publicar',
+			method: 'POST',
+			data: {"chorus.mensagem" : choru},
+			success: function(data) {
+				$("#escrever-chorinho-msg").removeClass("alert-error").addClass("alert-info");
+				$("#escrever-chorinho-msg").text('Você chorou com sucesso.');
+				$("#escrever-chorinho-msg").show();
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+	} else {
+		$("#escrever-chorinho-msg").removeClass("alert-info").addClass("alert-error");
+		$("#escrever-chorinho-msg").text('Seu choru possui mais de 144 caracteres');
+		$("#escrever-chorinho-msg").show();
+	}
 	
 };
 	

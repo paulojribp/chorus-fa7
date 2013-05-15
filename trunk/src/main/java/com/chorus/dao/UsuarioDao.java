@@ -1,7 +1,9 @@
 package com.chorus.dao;
 
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.caelum.vraptor.ioc.Component;
@@ -60,6 +62,25 @@ public class UsuarioDao extends GenericDao<Usuario>{
 	public void refresh(Usuario user) {
 		user = loadById(user.getId());
 		entityManager.refresh(user);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usuario> findSeguindo(Usuario user) {
+		Query q = entityManager.createQuery("select s.seguindo from Seguir s where s.usuario.id = ? order by s.datahora desc");
+		q.setParameter(1, user.getId());
+		return q.getResultList();
+	}
+	
+	public Boolean findEstaSeguindo(Usuario user, Usuario seguindo) {
+		Query q = entityManager.createQuery("from Seguir s where s.usuario.id = ? and s.seguindo.id = ?");
+		q.setParameter(1, user.getId());
+		q.setParameter(2, seguindo.getId());
+		
+		try {
+			return q.getSingleResult() != null;
+		} catch (NoResultException e) {
+			return false;
+		}
 	}
 	
 }
