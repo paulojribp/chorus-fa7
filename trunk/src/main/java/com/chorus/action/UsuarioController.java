@@ -1,5 +1,10 @@
 package com.chorus.action;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -14,6 +19,7 @@ import com.chorus.entity.Usuario;
 import com.chorus.exceptions.ErroAoSeguirException;
 import com.chorus.exceptions.UsuarioInexistenteException;
 import com.chorus.service.UsuarioService;
+import com.chorus.util.ProfilePictureFinder;
 
 @Resource
 @Path("/usuario")
@@ -23,11 +29,14 @@ public class UsuarioController {
 	
 	private UsuarioService usuarioService;
 	private UserInfo userInfo;
+
+	private ProfilePictureFinder pictureFinder;
 	
-	public UsuarioController(UsuarioService usuarioService, Result result, UserInfo userInfo) {
+	public UsuarioController(UsuarioService usuarioService, Result result, UserInfo userInfo, ProfilePictureFinder pictureFinder) {
 		this.usuarioService = usuarioService;
 		this.result = result;
 		this.userInfo = userInfo;
+		this.pictureFinder = pictureFinder;
 	}
 
 	@Post
@@ -70,21 +79,22 @@ public class UsuarioController {
 
 	@Post
 	@Path("/seguir")
-	public void seguir(Long usuarioASeguirId) throws ErroAoSeguirException {
+	public void seguir(@RequestParam Long usuarioASeguirId) throws ErroAoSeguirException {
 		usuarioService.seguir(userInfo.getUser().getId(), usuarioASeguirId);
 		result.nothing();
 	}
 
 	@Post
 	@Path("/loggedUser")
-	public void loggedUser() {
+	public void loggedUser() throws MalformedURLException, IOException {
 		UsuarioDto u = new UsuarioDto();
 		
-		if (userInfo.getUser() != null) {
-			u = new UsuarioDto(userInfo.getUser().getUsername(), userInfo.getUser().getNome());
+		Usuario usuario = userInfo.getUser();
+		if (usuario != null) {
+			u = new UsuarioDto(usuario.getUsername(), usuario.getNome());
+			u.setGravatarUrl(pictureFinder.getPictureFromEmail(usuario.getEmail()));
 		}
-		
 		result.use(Results.json()).from(u).serialize();
 	}
-	
+
 }

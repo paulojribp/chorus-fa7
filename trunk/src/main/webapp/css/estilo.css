@@ -73,3 +73,28 @@
 	border-top: 1px solid #dadada;
 	padding-top: 4px;
 }
+
+#usuario.perfil .span-nome {
+	min-height: 128px;
+	font-size: 20px;
+	color: #444444;
+	font-weight: bold;
+	width: 80%;
+}
+
+#usuario.perfil .main {
+	background-color: #333;
+	min-height: 128px;
+	font-size: 20px;
+	color: #444444;
+	font-weight: bold;
+	width: 80%;
+}
+
+#usuario-perfil .span-avatar-perfil {
+	width: 52px;
+	height: 52px;
+	text-align: center;
+	padding-top: 1px;
+	border: 1px solid #cacaca;
+}

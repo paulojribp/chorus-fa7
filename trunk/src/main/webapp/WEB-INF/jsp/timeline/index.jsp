@@ -10,6 +10,11 @@
             <div class="container-fluid main">
 			  <div class="row-fluid">
 			    <div class="span3">
+			      	<div class="well span12">
+			    		<div id="usuario-perfil" class="span12">
+			    			
+			    		</div>
+			    	</div>
 			      <ul class="nav nav-tabs nav-stacked">
   					<li><a href="#" class="">Chorinhos<i class="icon-chevron-right pull-right"></i></a></li>
   					<li><a href="#" class="">Seguindo<i class="icon-chevron-right pull-right"></i></a></li>

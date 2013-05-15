@@ -13,6 +13,8 @@ public class UsuarioDto {
 	private String senha;
 	
 	private String confirmaSenha;
+	
+	private String			gravatarUrl;
 
 	public UsuarioDto() {
 	}
@@ -70,6 +72,14 @@ public class UsuarioDto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getGravatarUrl() {
+		return gravatarUrl;
+	}
+
+	public void setGravatarUrl(String gravatarUrl) {
+		this.gravatarUrl = gravatarUrl;
 	}
 	
 }
