@@ -10,17 +10,20 @@ public class ChoruDto {
 	
 	private String nome;
 	
+	private String email;
+	
 	private String gravatarUrl;
 
 	public ChoruDto() {
 	}
 	
-	public ChoruDto(String mensagem, String username, String nome,
+	public ChoruDto(String mensagem, String username, String nome, String email,
 			String gravatarUrl, String datahora) {
 		super();
 		this.mensagem = mensagem;
 		this.username = username;
 		this.nome = nome;
+		this.email = email;
 		this.gravatarUrl = gravatarUrl;
 		this.datahora = datahora;
 	}
@@ -63,6 +66,14 @@ public class ChoruDto {
 
 	public void setDatahora(String datahora) {
 		this.datahora = datahora;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

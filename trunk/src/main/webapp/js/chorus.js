@@ -14,11 +14,11 @@ Chorus.verifyUserLogin = function() {
 				
 				var usuarioPerfil = $("#usuario-perfil");
 				var templatePerfil = Perfil.perfilTemplate;
-				templatePerfil = templatePerfil.replace(Perfil.AVATAR, user.gravatarUrl);
 				templatePerfil = templatePerfil.replace(Perfil.USERNAME, user.username);
 				templatePerfil = templatePerfil.replace(Perfil.NOMEUSUARIO, user.nome);
 				
 				usuarioPerfil.append(templatePerfil);
+				Chorus.loadLoggedUserPhoto();
 				
 			} else {
 				$("#login-form").show();
@@ -31,12 +31,22 @@ Chorus.verifyUserLogin = function() {
 	});
 };
 
+Chorus.loadLoggedUserPhoto = function() {
+	$.ajax({
+		url: '../usuario/userPhoto',
+		method: 'POST',
+		success: function(data) {
+			var perfilAvatar = $(".span-avatar-perfil");
+			perfilAvatar.append('<img id="perfil-avatar" alt="perfil"  src="'+ data.string +'" />');
+		}
+	});
+};
+
 Perfil.NOMEUSUARIO = '%NOME_USUARIO%';
 Perfil.USERNAME = '%USERNAME%';
-Perfil.AVATAR = '%AVATAR%';
 
 Perfil.perfilTemplate = '<div class="span12"> ' +
-			    				'<span class="span-avatar-perfil"><img alt="perfil" src="'+ Perfil.AVATAR +'" /></span>' +
+			    				'<span class="span-avatar-perfil"></span>' +
 			    				'<span class="span8">' +
 			    				Perfil.NOMEUSUARIO +
 			    				'<a class="span-username">'+Perfil.USERNAME+'</a>' +

@@ -15,7 +15,7 @@
 				    	<form action="#" method="post">
 					  	  <div class="control-group">
 						    <div class="controls" >
-						      <span class="alert alert-info hide" id="escrever-chorinho-msg"></span>
+						      <span class="alert alert-info hide span8" id="escrever-chorinho-msg"></span>
 	  				    	  <textarea rows="2" id="escrever-chorinho" name="chorus.mensagem" ></textarea>
 						    </div>
 					  	  </div>
