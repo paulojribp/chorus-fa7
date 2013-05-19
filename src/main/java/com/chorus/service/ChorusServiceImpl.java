@@ -11,7 +11,6 @@ import com.chorus.dto.ChoruDto;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 import com.chorus.util.DatetimeUtil;
-import com.chorus.util.ProfilePictureFinder;
 import com.chorus.util.ShortUrl;
 
 @Component
@@ -19,14 +18,12 @@ public class ChorusServiceImpl implements ChorusService {
 
 	private ChorusDao dao;
 	private UsuarioService usuarioService;
-	private ProfilePictureFinder pictureFinder;
 	
 	private static final String DEFAULT_IMAGE = "../images/defaultuser.png";
 	
-	public ChorusServiceImpl(ChorusDao chorusDao, UsuarioService usuarioService, ProfilePictureFinder pictureFinder) {
+	public ChorusServiceImpl(ChorusDao chorusDao, UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 		this.dao = chorusDao;
-		this.pictureFinder = pictureFinder;
 	}
 	
 	@Override
@@ -63,14 +60,9 @@ public class ChorusServiceImpl implements ChorusService {
 		List<ChoruDto> chorusDto = new ArrayList<ChoruDto>();
 		
 		for (Chorus c : chorus) {
-			try {
-				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
-						c.getUsuario().getNome(), pictureFinder.getPictureFromEmail(c.getUsuario().getEmail()),
-						DatetimeUtil.timeAgo(c.getDatahora())));
-			} catch (Exception e) {
-				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
-						c.getUsuario().getNome(), DEFAULT_IMAGE, DatetimeUtil.timeAgo(c.getDatahora())));
-			}
+			chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
+					c.getUsuario().getNome(), c.getUsuario().getEmail(), DEFAULT_IMAGE,
+					DatetimeUtil.timeAgo(c.getDatahora())));
 		}
 		
 		return chorusDto;
@@ -81,14 +73,9 @@ public class ChorusServiceImpl implements ChorusService {
 		List<ChoruDto> chorusDto = new ArrayList<ChoruDto>();
 		
 		for (Chorus c : chorus) {
-			try {
-				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
-						c.getUsuario().getNome(), pictureFinder.getPictureFromEmail(c.getUsuario().getEmail()),
-						DatetimeUtil.timeAgo(c.getDatahora())));
-			} catch (Exception e) {
-				chorusDto.add(new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
-						c.getUsuario().getNome(), DEFAULT_IMAGE, DatetimeUtil.timeAgo(c.getDatahora())));
-			}
+			chorusDto.add( new ChoruDto(c.getMensagem(), c.getUsuario().getUsername(),
+					c.getUsuario().getNome(), c.getUsuario().getEmail(), DEFAULT_IMAGE,
+					DatetimeUtil.timeAgo(c.getDatahora()) ));
 		}
 		
 		return chorusDto;

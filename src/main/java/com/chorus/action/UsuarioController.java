@@ -104,9 +104,25 @@ public class UsuarioController {
 		Usuario usuario = userInfo.getUser();
 		if (usuario != null) {
 			u = new UsuarioDto(usuario.getUsername(), usuario.getNome());
-			u.setGravatarUrl(pictureFinder.getPictureFromEmail(usuario.getEmail()));
 		}
 		result.use(Results.json()).from(u).serialize();
+	}
+	
+	@Post
+	@Path("/userPhoto")
+	public void loadUserPhoto(String email) {
+		if (email == null || email.trim().length() == 0) {
+			email = userInfo.getUser().getEmail();
+		}
+		
+		try {
+			String imgurl = pictureFinder.getPictureFromEmail(email);
+			result.use(Results.json()).from(imgurl).serialize();
+			return;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.nothing();
+		}
 	}
 
 }
