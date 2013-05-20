@@ -14,7 +14,7 @@ Chorus.verifyUserLogin = function() {
 				
 				var usuarioPerfil = $("#usuario-perfil");
 				var templatePerfil = Perfil.perfilTemplate;
-				templatePerfil = templatePerfil.replace(Perfil.USERNAME, user.username);
+				templatePerfil = templatePerfil.replace(/%USERNAME%/g, user.username);
 				templatePerfil = templatePerfil.replace(Perfil.NOMEUSUARIO, user.nome);
 				
 				usuarioPerfil.append(templatePerfil);
@@ -49,7 +49,7 @@ Perfil.perfilTemplate = '<div class="span12"> ' +
 			    				'<span class="span-avatar-perfil"></span>' +
 			    				'<span class="span8">' +
 			    				Perfil.NOMEUSUARIO +
-			    				'<a class="span-username">'+Perfil.USERNAME+'</a>' +
+			    				'<a href="../usuario/'+Perfil.USERNAME+'" class="span-username">@'+Perfil.USERNAME+'</a>' +
 			    				'</span>' +
 			    		'</div>';
 

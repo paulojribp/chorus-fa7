@@ -128,7 +128,7 @@ Timeline.chorusTemplate = '<div class="span12 chorus"> ' +
 			    				'<span class="span-avatar '+Timeline.USERNAME+'"></span>' +
 			    				'<span class="span-nome">' +
 			    					Timeline.NOMEUSUARIO +
-				    				'<a href="#" class="span-username">'+Timeline.USERNAME+'</a>' +
+				    				'<a href="../usuario/'+Timeline.USERNAME+'" class="span-username">@'+Timeline.USERNAME+'</a>' +
 			    				'</span>' +
 			    				'<span class="span1">' +
 			    					Timeline.CHORUSTIME +
