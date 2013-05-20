@@ -99,12 +99,34 @@ public class UsuarioServiceImpl implements UsuarioService {
 			for (Usuario u : users) {
 				UsuarioDto udto = new UsuarioDto(u.getUsername(),u.getNome());
 				udto.setSeguindo(true);
-				udto.setSeguido(dao.findEstaSeguindo(u, user));
-				try {
-					udto.setGravatarUrl(pictureFinder.getPictureFromEmail(u.getEmail()));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				udto.setSeguido(dao.findEstaSendoSeguido(u, user));
+				addGravatarUrl(u, udto);
+				usersDto.add(udto);
+			}
+		
+		return usersDto;
+	}
+
+	private void addGravatarUrl(Usuario u, UsuarioDto udto) {
+		try {
+			udto.setGravatarUrl(pictureFinder.getPictureFromEmail(u.getEmail()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<UsuarioDto> findSeguidores(Usuario user) {
+		user = dao.findByUsuario(user);
+		List<Usuario> users = dao.findSeguidores(user);
+		List<UsuarioDto> usersDto = new ArrayList<UsuarioDto>();
+		
+		if (users != null)
+			for (Usuario u : users) {
+				UsuarioDto udto = new UsuarioDto(u.getUsername(),u.getNome());
+				udto.setSeguindo(dao.findEstaSendoSeguido(u, user));
+				udto.setSeguido(true);
+				addGravatarUrl(u, udto);
 				usersDto.add(udto);
 			}
 		

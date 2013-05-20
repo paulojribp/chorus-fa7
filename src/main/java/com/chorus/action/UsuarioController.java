@@ -125,9 +125,21 @@ public class UsuarioController {
 		}
 	}
 	
+
+	@Path(value="/seguidores", priority=1)
+	public void seguidores() {
+		
+	}
+	
+	@Post
+	public void listarSeguidores(){
+		List<UsuarioDto> users = service.findSeguidores(userInfo.getUser());
+		result.use(Results.json()).from(users).serialize();
+	}
+	
 	@Get
 	@Path(value="/{username}", priority=3)
-	public UsuarioDto perfil(String username) {
+	public UsuarioDto perfil(@RequestParam String username) {
 		Usuario u = new Usuario(username);
 		u = service.findByUsuario(u);
 		UsuarioDto udto = new UsuarioDto(u);

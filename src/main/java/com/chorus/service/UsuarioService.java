@@ -21,4 +21,6 @@ public interface UsuarioService {
 
 	List<UsuarioDto> findSeguindo(Usuario user);
 
+	List<UsuarioDto> findSeguidores(Usuario user);
+
 }
