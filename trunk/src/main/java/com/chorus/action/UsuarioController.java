@@ -28,13 +28,13 @@ public class UsuarioController {
 
 	private Result result;
 	
-	private UsuarioService usuarioService;
+	private UsuarioService service;
 	private UserInfo userInfo;
 
 	private ProfilePictureFinder pictureFinder;
 	
 	public UsuarioController(UsuarioService usuarioService, Result result, UserInfo userInfo, ProfilePictureFinder pictureFinder) {
-		this.usuarioService = usuarioService;
+		this.service = usuarioService;
 		this.result = result;
 		this.userInfo = userInfo;
 		this.pictureFinder = pictureFinder;
@@ -44,7 +44,7 @@ public class UsuarioController {
 	@Path("/login")
     public void login(Usuario usuario) {
 		try {
-			usuario = usuarioService.login(usuario);
+			usuario = service.login(usuario);
 			userInfo.login(usuario);
 			result.include("usuarioLogado", new UsuarioDto(usuario.getUsername(), usuario.getNome()));
 			result.redirectTo(TimelineController.class).index();
@@ -57,7 +57,7 @@ public class UsuarioController {
     }
 	
 	@Get
-	@Path("/logout")
+	@Path(value="/logout", priority=2)
 	public void logout() {
 		userInfo.logout();
 		result.redirectTo(IndexController.class).index();
@@ -68,7 +68,7 @@ public class UsuarioController {
 	public void salvar(UsuarioDto usuario) throws Exception {
 		ReturnDto returndto = new ReturnDto();
 		try {
-			usuarioService.salvar(usuario);
+			service.salvar(usuario);
 			returndto.setSuccess(true);
 		} catch (Exception e) {
 			returndto.setSuccess(false);
@@ -81,18 +81,18 @@ public class UsuarioController {
 	@Post
 	@Path("/seguir")
 	public void seguir(@RequestParam Long usuarioASeguirId) throws ErroAoSeguirException {
-		usuarioService.seguir(userInfo.getUser().getId(), usuarioASeguirId);
+		service.seguir(userInfo.getUser().getId(), usuarioASeguirId);
 		result.nothing();
 	}
 	
-	@Path("/seguindo")
+	@Path(value="/seguindo", priority=1)
 	public void seguindo() {
 		
 	}
 	
 	@Post
 	public void listarSeguindo() {
-		List<UsuarioDto> users = usuarioService.findSeguindo(userInfo.getUser());
+		List<UsuarioDto> users = service.findSeguindo(userInfo.getUser());
 		result.use(Results.json()).from(users).serialize();
 	}
 
@@ -123,6 +123,21 @@ public class UsuarioController {
 			e.printStackTrace();
 			result.nothing();
 		}
+	}
+	
+	@Get
+	@Path(value="/{username}", priority=3)
+	public UsuarioDto perfil(String username) {
+		Usuario u = new Usuario(username);
+		u = service.findByUsuario(u);
+		UsuarioDto udto = new UsuarioDto(u);
+		try {
+			udto.setGravatarUrl(pictureFinder.getPictureFromEmailDefaultSize(u.getEmail()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return udto;
 	}
 
 }

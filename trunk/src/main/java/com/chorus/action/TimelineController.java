@@ -1,6 +1,5 @@
 package com.chorus.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.vraptor.Get;
@@ -41,16 +40,8 @@ public class TimelineController {
 	@Path("/listar/{usuario.username}")
 	@Get
 	public void listar(Usuario usuario) throws Exception {
-		List<Chorus> chorinhos = null;
-		if(usuario == null){
-			chorinhos = chorusService.loadAll();
-		}else{
-//			chorinhos = chorusService.findByUsuario(usuario);
-			chorinhos = new ArrayList<Chorus>();
-		}
-		
-		result.include("chorinhos", chorinhos);
-		result.redirectTo(TimelineController.class).listar();
+		List<ChoruDto> chorinhos = chorusService.findByUsuario(usuario);
+		result.use(Results.json()).from(chorinhos).serialize();
 	}
 	
 	@Path("/index")

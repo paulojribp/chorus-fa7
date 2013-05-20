@@ -23,6 +23,16 @@ public class ProfilePictureFinder {
 					.setStandardDefaultImage(DefaultImage.HTTP_404)
 					.getUrl(email));
 	}
+	
+	public String getPictureFromEmailDefaultSize(String email) throws MalformedURLException, IOException {
+		return this.validateUrl(
+				new Gravatar()
+					.setSize(120)
+					.setHttps(true)
+					.setRating(Rating.PARENTAL_GUIDANCE_SUGGESTED)
+					.setStandardDefaultImage(DefaultImage.HTTP_404)
+					.getUrl(email));
+	}
 
 	private String validateUrl(String gravataUrl) throws MalformedURLException, IOException {
 		return isNotFound(new URL(gravataUrl)) ? this.getDefaultAvatar()
