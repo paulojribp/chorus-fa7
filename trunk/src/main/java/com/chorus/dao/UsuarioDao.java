@@ -71,7 +71,7 @@ public class UsuarioDao extends GenericDao<Usuario>{
 		return q.getResultList();
 	}
 	
-	public Boolean findEstaSeguindo(Usuario user, Usuario seguindo) {
+	public Boolean findEstaSendoSeguido(Usuario user, Usuario seguindo) {
 		Query q = entityManager.createQuery("from Seguir s where s.usuario.id = ? and s.seguindo.id = ?");
 		q.setParameter(1, user.getId());
 		q.setParameter(2, seguindo.getId());
@@ -82,5 +82,10 @@ public class UsuarioDao extends GenericDao<Usuario>{
 			return false;
 		}
 	}
-	
+
+	public List<Usuario> findSeguidores(Usuario user) {
+		Query q = entityManager.createQuery("select s.usuario from Seguir s where s.seguindo.id = ? order by s.datahora desc");
+		q.setParameter(1, user.getId());
+		return q.getResultList();
+	}
 }
