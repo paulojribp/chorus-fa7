@@ -38,7 +38,7 @@
 	<div class="navbar navbar-inverse navbar-fixed-top">
 	    <div class="navbar-inner">
 	        <div class="container">
-	            <a class="brand" href="#">Chorus</a>
+	            <a class="brand" href="../timeline/index">Chorus</a>
 	            <div class="nav-collapse collapse pull-right">
 	            	<div id="user-data" class="hide logged-user">
 	            		<div class="span4 text-right" id="logged-username"> </div><a href="../usuario/logout">Logout</a>
