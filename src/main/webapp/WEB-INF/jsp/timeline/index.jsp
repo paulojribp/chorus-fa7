@@ -29,18 +29,18 @@
 			    	</div>
 			    	<div class="well">
 			    		<h3>Chorinhos</h3>
-			    		<div id="chorinhos-list" class="row">
+			    		<ul id="chorinhos-list" class="media-list">
 			    			
-			    		</div>
+			    		</ul>
 			    	</div>
 			    </div>
 			  </div>
 			</div>
-            <hr>
-
-            <footer>
-                <p>&copy; Chorus 2013</p>
-            </footer>
+            <center>
+				<div class="footer">
+		           &copy; Chorus 2013
+				</div>
+			</center>
         </div> 
 
         <script src="../js/vendor/bootstrap.min.js"></script>

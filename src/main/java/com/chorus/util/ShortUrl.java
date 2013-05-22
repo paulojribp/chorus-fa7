@@ -38,7 +38,7 @@ public class ShortUrl {
 	            String line;
 
 	            while ((line = reader.readLine()) != null) {
-	                shortLink = line;
+	                shortLink = "<a href='" + line + "'>" + line + "</a>";
 	            }
 	            reader.close();
 	 
