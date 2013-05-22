@@ -16,13 +16,6 @@ Seguidores.listarSeguidores = function() {
 				template = template.replace(Seguidores.AVATAR, usuarioDto.gravatarUrl);
 				template = template.replace(/%USERNAME%/g, usuarioDto.username);
 				template = template.replace(Seguidores.NOMEUSUARIO, usuarioDto.nome);
-				template = template.replace(Seguidores.SEGUIDO, usuarioDto.seguido);
-				if(usuarioDto.seguindo){
-					template = template.replace(Seguidores.BUTTON_STATUS, '<button id="btn-deixar-seguir"  onclick="Usuario.deixarSeguir();" type="submit" class="btn btn-danger btn-seguir" >Deixar de Seguir</button>');
-				}else{
-					template = template.replace(Seguidores.BUTTON_STATUS, '<button id="btn-seguir" type="submit" class="btn btn-danger btn-seguir" >Seguir</button>');
-				}
-				template = template.replace(Seguidores.SEGUINDO, usuarioDto.seguindo);
 				
 				seguidoresList.append(template);
 			}
@@ -44,8 +37,5 @@ Seguidores.chorusTemplate = '<div class="span12 chorus"> ' +
 			    				'<span class="span-nome">' +
 			    					Seguidores.NOMEUSUARIO +
 				    				'<a href="../usuario/'+Seguidores.USERNAME+'" class="span-username">@'+Seguidores.USERNAME+'</a>' +
-			    				'</span>' +
-			    				'<span class="span3">' +
-			    					Seguidores.BUTTON_STATUS
 			    				'</span>' +
 			    			'</div>';
