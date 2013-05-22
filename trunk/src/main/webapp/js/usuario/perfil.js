@@ -26,7 +26,7 @@ $(document).ready(function () {
 var UsuarioPerfil = {};
 
 UsuarioPerfil.btnFollowControl = function() {
-	if (UsuarioPerfil.seguindo == 'true') {
+	if (UsuarioPerfil.seguido == 'true') {
 		$("#btn-unfollow").show();
 	} else {
 		if (UsuarioPerfil.perfilUsername() !== $("#logged-username").attr('username')) {
@@ -73,15 +73,22 @@ UsuarioPerfil.CHORUSTIME = '%CHORUS_TIME%';
 UsuarioPerfil.CHORUSMENSAGEM = '%CHORUS_MENSAGEM%';
 UsuarioPerfil.AVATAR = '%AVATAR%';
 
-UsuarioPerfil.chorusTemplate = '<div class="span12 chorus"> ' +
-			    				'<span class="span-avatar '+UsuarioPerfil.USERNAME+'"><img class="img-polaroid" alt="perfil"  src="'+UsuarioPerfil.AVATAR+'" /></span>' +
-			    				'<span class="span-nome">' +
-			    					UsuarioPerfil.NOMEUSUARIO +
-				    				'<a href="'+UsuarioPerfil.USERNAME+'" class="span-username">@'+UsuarioPerfil.USERNAME+'</a>' +
-			    				'</span>' +
-			    				'<span class="span1">' +
-			    					UsuarioPerfil.CHORUSTIME +
-			    				'</span>' +
-			    				'<span class="span9">'+UsuarioPerfil.CHORUSMENSAGEM+'</span>' +
-			    			'</div>';
-
+UsuarioPerfil.chorusTemplate = '<li id="chorinhos-'+UsuarioPerfil.USERNAME+'" class="media">' +
+								'<a class="pull-left" href="#">' +
+								  '<img class="media-object img-polaroid" src="../images/defaultuser.png">' +
+								'</a>' +
+								'<div class="media-body">' +
+								'<div class="row-fluid">' +
+									'<span class="nome">' +
+										UsuarioPerfil.NOMEUSUARIO +
+									'</span>' +
+									'<span class="username">' +
+										'<a href="../usuario/'+UsuarioPerfil.USERNAME+'" class="span-username">@'+UsuarioPerfil.USERNAME+'</a>' +
+									'</span>' +
+									'<span class="tempo">' +
+										UsuarioPerfil.CHORUSTIME +
+									'</span>' +
+								'</div>' +
+									'<span>'+UsuarioPerfil.CHORUSMENSAGEM+'</span>' +
+								'</div>' +
+							   '</li>';
