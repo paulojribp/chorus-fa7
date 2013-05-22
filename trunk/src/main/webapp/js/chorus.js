@@ -37,7 +37,7 @@ Chorus.loadLoggedUserPhoto = function() {
 		method: 'POST',
 		success: function(data) {
 			var perfilAvatar = $(".span-avatar-perfil");
-			perfilAvatar.append('<img id="perfil-avatar" alt="perfil"  src="'+ data.string +'" />');
+			perfilAvatar.append('<img class="img-polaroid" title="Perfil"  src="'+ data.string +'" />');
 		}
 	});
 };
@@ -45,13 +45,13 @@ Chorus.loadLoggedUserPhoto = function() {
 Perfil.NOMEUSUARIO = '%NOME_USUARIO%';
 Perfil.USERNAME = '%USERNAME%';
 
-Perfil.perfilTemplate = '<div class="span12"> ' +
-			    				'<span class="span-avatar-perfil"></span>' +
-			    				'<span class="span8">' +
-			    				Perfil.NOMEUSUARIO +
-			    				'<a href="../usuario/'+Perfil.USERNAME+'" class="span-username">@'+Perfil.USERNAME+'</a>' +
-			    				'</span>' +
-			    		'</div>';
+Perfil.perfilTemplate = '<span class="span-avatar-perfil"></span>' +
+	    				'<span class="perfil-nome">' 
+							+	Perfil.NOMEUSUARIO + 
+						'</span>' +
+	    				'<span class="perfil-username">'
+	    					+ '<a href="../usuario/'+Perfil.USERNAME+'" class="span-username">@'+Perfil.USERNAME+'</a>' +
+	    				'</span>';
 
 
 

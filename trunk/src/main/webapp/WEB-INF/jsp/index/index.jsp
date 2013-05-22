@@ -29,9 +29,11 @@
 		    </div>
 		  </div>
 		</div>
-		<div class="footer">
-            <p>&copy; Chorus 2013</p>
-		</div>
+		<center>
+			<div class="footer">
+	           &copy; Chorus 2013
+			</div>
+		</center>
         <script src="../js/vendor/bootstrap.min.js"></script>
     </body>
 </html>

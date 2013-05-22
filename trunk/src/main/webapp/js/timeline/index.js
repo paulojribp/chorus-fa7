@@ -124,15 +124,24 @@ Timeline.CHORUSTIME = '%CHORUS_TIME%';
 Timeline.CHORUSMENSAGEM = '%CHORUS_MENSAGEM%';
 Timeline.AVATAR = '%AVATAR%';
 
-Timeline.chorusTemplate = '<div class="span12 chorus"> ' +
-			    				'<span class="span-avatar '+Timeline.USERNAME+'"></span>' +
-			    				'<span class="span-nome">' +
-			    					Timeline.NOMEUSUARIO +
-				    				'<a href="../usuario/'+Timeline.USERNAME+'" class="span-username">@'+Timeline.USERNAME+'</a>' +
-			    				'</span>' +
-			    				'<span class="span1">' +
-			    					Timeline.CHORUSTIME +
-			    				'</span>' +
-			    				'<span class="span9">'+Timeline.CHORUSMENSAGEM+'</span>' +
-			    			'</div>';
-
+Timeline.chorusTemplate = 
+							'<li id="chorinhos" class="media">' +
+								'<a class="pull-left" href="#">' +
+								  '<img class="media-object img-polaroid" src="'+ Timeline.USERNAME +'">' +
+								'</a>' +
+								'<div class="media-body">' +
+								'<div class="row-fluid">' +
+				    				'<span class="nome">' +
+				    					Timeline.NOMEUSUARIO +
+				    				'</span>' +
+				    				'<span class="username">' +
+				    					'<a href="../usuario/'+Timeline.USERNAME+'" class="span-username">@'+Timeline.USERNAME+'</a>' +
+			    					'</span>' +
+				    				'<span class="tempo">' +
+				    					Timeline.CHORUSTIME +
+				    				'</span>' +
+			    				'</div>' +
+				    				'<span>'+Timeline.CHORUSMENSAGEM+'</span>' +
+								'</div>' +
+							'</li>';
+	

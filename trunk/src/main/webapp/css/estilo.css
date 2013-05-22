@@ -12,9 +12,27 @@
 }
 
 .footer {
-	color: #FFF;
-	text-align: center;
-	margin-top: 70px;
+  margin-top: 20px;
+  width: 140px;
+  border: 1px solid;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #006dcc;
+  *background-color: #0044cc;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .usuario_estilo{
@@ -55,22 +73,33 @@
 	color: #444444;
 	font-size: 11px;
 }
-#chorinhos-list .span-nome {
-	min-height: 18px;
-	font-size: 11px;
+#chorinhos-list .nome {
+	font-size: 14px;
 	color: #444444;
 	font-weight: bold;
-	width: 80%;
+	float: left;
+	padding-right: 5px;
+}
+#chorinhos-list .username {
+	font-size: 12px;
+	color: #444444;
+	font-weight: bold;
+	float: left;
+}
+#chorinhos-list .tempo {
+	font-size: 12px;
+	color: #444444;
+	font-weight: bold;
+	float: right;
+	margin-right: 10px;
 }
 .span-username {
 	color: #999999;
 }
-#chorinhos-list .span-avatar {
+#chorinhos-list .media-object {
 	width: 52px;
 	height: 52px;
-	text-align: center;
-	padding-top: 1px;
-	border: 1px solid #cacaca;
+	margin-left: 5px;
 }
 #chorinhos-list .chorus {
 	margin-left: 12px;
@@ -96,16 +125,34 @@
 }
 
 #usuario-perfil .span-avatar-perfil {
-	width: 52px;
-	height: 52px;
 	text-align: center;
-	padding-top: 1px;
-	border: 1px solid #cacaca;
+}
+
+#usuario-perfil .perfil-nome {
+	font-weight: bold;
+	text-align: center;
+}
+
+#usuario-perfil .perfil-username {
+	font-weight: bold;
+	text-align: center;
+}
+
+#chorinhos{
+	padding-bottom: 10px;
+	margin-bottom: -16px;
+}
+
+#chorinhos-list .media {
+	border-top: 1px solid #c8c8c8;
+	padding-top: 10px;
+}
+
+#chorinhos-list li:hover {
+	background-color: #D1EEEE;
 }
 
 #escrever-chorinho-msg {
 	width: 99%;
 	margin-bottom: 2px;
 }
-
-

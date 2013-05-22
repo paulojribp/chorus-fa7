@@ -40,7 +40,7 @@ UsuarioPerfil.CHORUSMENSAGEM = '%CHORUS_MENSAGEM%';
 UsuarioPerfil.AVATAR = '%AVATAR%';
 
 UsuarioPerfil.chorusTemplate = '<div class="span12 chorus"> ' +
-			    				'<span class="span-avatar '+UsuarioPerfil.USERNAME+'"><img alt="perfil"  src="'+UsuarioPerfil.AVATAR+'" /></span>' +
+			    				'<span class="span-avatar"><img class="img-polaroid" alt="perfil"  src="'+UsuarioPerfil.AVATAR+'" /></span>' +
 			    				'<span class="span-nome">' +
 			    					UsuarioPerfil.NOMEUSUARIO +
 				    				'<a href="'+UsuarioPerfil.USERNAME+'" class="span-username">@'+UsuarioPerfil.USERNAME+'</a>' +
