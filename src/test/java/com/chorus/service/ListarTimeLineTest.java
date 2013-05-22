@@ -6,8 +6,9 @@ import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.chorus.dao.ChorusDao;
@@ -23,15 +24,18 @@ import com.chorus.entity.Usuario;
  *          $Date:  $ <br> 
  *          $Author:  $
  */
-@Ignore
+//@Ignore
 public class ListarTimeLineTest {
 	
 	private static TimeLineService	service;
+	private static TimelineDao timelineDao;
 	
 	@BeforeClass
 	public static void beforeClass() {
 		ChorusDao chorusDao = mock(ChorusDao.class);
-		TimelineDao timelineDao = mock(TimelineDao.class);;
+		timelineDao = new TimelineDao();
+		EntityManager entityManager = mock(EntityManager.class);
+		timelineDao.setEntityManager(entityManager);
 		service = new TimeLineServiceImpl(timelineDao, chorusDao);
 	}
 	
