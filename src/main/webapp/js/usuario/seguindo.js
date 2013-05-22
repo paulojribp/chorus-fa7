@@ -13,7 +13,7 @@ Seguindo.listarSeguindo = function() {
 				var usuarioDto = data.list[x];
 				var template = Seguindo.chorusTemplate;
 				template = template.replace(Seguindo.AVATAR, usuarioDto.gravatarUrl);
-				template = template.replace(Seguindo.USERNAME, usuarioDto.username);
+				template = template.replace(/%USERNAME%/g, usuarioDto.username);
 				template = template.replace(Seguindo.NOMEUSUARIO, usuarioDto.nome);
 				template = template.replace(Seguindo.SEGUIDO, usuarioDto.seguido);
 				template = template.replace(Seguindo.SEGUINDO, usuarioDto.seguindo);
@@ -37,7 +37,7 @@ Seguindo.chorusTemplate = '<div class="span12 chorus"> ' +
 			    				'<span class="span-avatar"><img alt="perfil" src="'+ Seguindo.AVATAR +'" class="avatar" /></span>' +
 			    				'<span class="span-nome">' +
 			    					Seguindo.NOMEUSUARIO +
-				    				'<a class="span-username">'+Seguindo.USERNAME+'</a>' +
+				    				'<a href="../usuario/'+Seguindo.USERNAME+'" class="span-username">@'+Seguindo.USERNAME+'</a>' +
 			    				'</span>' +
 			    				'<span class="span1">' +
 			    					Seguindo.SEGUIDO +

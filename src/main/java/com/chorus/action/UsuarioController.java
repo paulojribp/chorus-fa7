@@ -57,7 +57,7 @@ public class UsuarioController {
     }
 	
 	@Get
-	@Path(value="/logout", priority=2)
+	@Path(value="/logout", priority=1)
 	public void logout() {
 		userInfo.logout();
 		result.redirectTo(IndexController.class).index();
@@ -78,10 +78,24 @@ public class UsuarioController {
 		result.use(Results.json()).from(returndto).serialize();
 	}
 
+//	@Post
+//	@Path("/seguir")
+//	public void seguir(@RequestParam Long usuarioASeguirId) throws ErroAoSeguirException {
+//		service.seguir(userInfo.getUser().getId(), usuarioASeguirId);
+//		result.nothing();
+//	}
+	
 	@Post
 	@Path("/seguir")
-	public void seguir(@RequestParam Long usuarioASeguirId) throws ErroAoSeguirException {
-		service.seguir(userInfo.getUser().getId(), usuarioASeguirId);
+	public void seguir(String username) throws ErroAoSeguirException {
+		service.seguir(userInfo.getUser().getId(), username);
+		result.nothing();
+	}
+	
+	@Post
+	@Path("/deixarSeguir")
+	public void deixarSeguir(String username) throws ErroAoSeguirException {
+		service.deixarSeguir(userInfo.getUser().getId(), username);
 		result.nothing();
 	}
 	
@@ -138,13 +152,12 @@ public class UsuarioController {
 	}
 	
 	@Get
-	@Path(value="/{username}", priority=3)
+	@Path(value="/{username}", priority=2)
 	public UsuarioDto perfil(@RequestParam String username) {
 		Usuario u = new Usuario(username);
-		u = service.findByUsuario(u);
-		UsuarioDto udto = new UsuarioDto(u);
+		UsuarioDto udto = service.findByUsuario(u);
 		try {
-			udto.setGravatarUrl(pictureFinder.getPictureFromEmailDefaultSize(u.getEmail()));
+			udto.setGravatarUrl(pictureFinder.getPictureFromEmailDefaultSize(udto.getEmail()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

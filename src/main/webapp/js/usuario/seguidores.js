@@ -14,7 +14,7 @@ Seguidores.listarSeguidores = function() {
 				var usuarioDto = data.list[x];
 				var template = Seguidores.chorusTemplate;
 				template = template.replace(Seguidores.AVATAR, usuarioDto.gravatarUrl);
-				template = template.replace(Seguidores.USERNAME, usuarioDto.username);
+				template = template.replace(/%USERNAME%/g, usuarioDto.username);
 				template = template.replace(Seguidores.NOMEUSUARIO, usuarioDto.nome);
 				template = template.replace(Seguidores.SEGUIDO, usuarioDto.seguido);
 				if(usuarioDto.seguindo){
@@ -43,7 +43,7 @@ Seguidores.chorusTemplate = '<div class="span12 chorus"> ' +
 			    				'<span class="span-avatar"><img alt="perfil" src="'+ Seguidores.AVATAR +'" class="avatar" /></span>' +
 			    				'<span class="span-nome">' +
 			    					Seguidores.NOMEUSUARIO +
-				    				'<a class="span-username">'+Seguidores.USERNAME+'</a>' +
+				    				'<a href="../usuario/'+Seguidores.USERNAME+'" class="span-username">@'+Seguidores.USERNAME+'</a>' +
 			    				'</span>' +
 			    				'<span class="span3">' +
 			    					Seguidores.BUTTON_STATUS
