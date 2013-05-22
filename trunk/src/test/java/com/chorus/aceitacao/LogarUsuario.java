@@ -1,45 +1,27 @@
 package com.chorus.aceitacao;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverBackedSelenium;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.thoughtworks.selenium.Selenium;
-
-public class LogarUsuario  {
-	
-	private static WebDriver driver;
-	private static Selenium selenium;
-	
-	@Before
-	public void setUp(){
-		driver = new FirefoxDriver();
-		selenium = new WebDriverBackedSelenium(driver,"http://54.243.139.54/");
-		driver.get("http://54.243.139.54/");	
-	}
+public class LogarUsuario extends AbstractSeleniumChorusTest  {
 
 		@Test
-		public void testLogarUsuario() throws Exception {
+		public void testCadastrarUsuario() throws Exception {
 			selenium.open("/chorus/index/index");
-			selenium.type("id=nome", "flavioso");
+			String username =  "flavioso";
+			String senha =  "123456";
+			selenium.type("id=nome",username);
 			selenium.type("id=email", "flaviosof@gmail.c");
-			selenium.type("id=username", "flavioso");
-			selenium.type("id=senha", "123456");
-			selenium.type("id=confirmasenha", "123456");
+			selenium.type("id=username", username);
+			selenium.type("id=senha", senha);
+			selenium.type("id=confirmasenha", senha);
 			selenium.click("id=btn-cadastrar");
 			selenium.type("id=nome", "flaviosof");
 			selenium.click("id=btn-cadastrar");
 			selenium.type("id=username", "flaviosoceara");
 			selenium.click("id=btn-cadastrar");
+			login(username, senha);
 		}
 
-		@After
-		public void tearDown() throws Exception {
-			selenium.stop();
-		}
-	}
+}
 
 	
 	
