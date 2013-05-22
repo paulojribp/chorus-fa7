@@ -6,9 +6,8 @@ import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.chorus.dao.ChorusDao;
@@ -16,15 +15,7 @@ import com.chorus.dao.TimelineDao;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
 
-/**
- * 
- * @author kete@sagaranatech.com
- * @since Apr 15, 2013
- * @version $Revision:  $ <br>
- *          $Date:  $ <br> 
- *          $Author:  $
- */
-//@Ignore
+@Ignore
 public class ListarTimeLineTest {
 	
 	private static TimeLineService	service;
@@ -33,9 +24,7 @@ public class ListarTimeLineTest {
 	@BeforeClass
 	public static void beforeClass() {
 		ChorusDao chorusDao = mock(ChorusDao.class);
-		timelineDao = new TimelineDao();
-		EntityManager entityManager = mock(EntityManager.class);
-		timelineDao.setEntityManager(entityManager);
+		timelineDao = mock(TimelineDao.class);
 		service = new TimeLineServiceImpl(timelineDao, chorusDao);
 	}
 	
