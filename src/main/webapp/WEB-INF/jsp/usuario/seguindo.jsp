@@ -13,9 +13,9 @@
 			    <div class="span9">
 			    	<div class="well">
 			    		<h3>Seguindo</h3>
-			    		<div id="chorinhos-list" class="row">
+			    		<ul id="chorinhos-list" class="media-list">
 			    			
-			    		</div>
+			    		</ul>
 			    	</div>
 			    </div>
 			  </div>

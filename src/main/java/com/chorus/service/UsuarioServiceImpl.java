@@ -136,14 +136,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usersDto;
 	}
 
-	private void addGravatarUrl(Usuario u, UsuarioDto udto) {
-		try {
-			udto.setGravatarUrl(pictureFinder.getPictureFromEmail(u.getEmail()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	@Override
 	public List<UsuarioDto> findSeguidores(Usuario user) {
 		user = dao.findByUsuario(user);
@@ -153,13 +145,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if (users != null)
 			for (Usuario u : users) {
 				UsuarioDto udto = new UsuarioDto(u.getUsername(),u.getNome());
-				udto.setSeguindo(dao.findEstaSendoSeguido(u, user));
-				udto.setSeguido(true);
+				udto.setSeguindo(true);
+				udto.setSeguido(dao.findEstaSendoSeguido(user, u));
 				addGravatarUrl(u, udto);
 				usersDto.add(udto);
 			}
 		
 		return usersDto;
+	}
+
+	private void addGravatarUrl(Usuario u, UsuarioDto udto) {
+		try {
+			udto.setGravatarUrl(pictureFinder.getPictureFromEmail(u.getEmail()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
