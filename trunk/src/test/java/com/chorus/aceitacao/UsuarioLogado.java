@@ -7,14 +7,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.thoughtworks.selenium.SeleneseTestCase;
+import com.thoughtworks.selenium.Selenium;
 
-public class UsuarioLogado extends SeleneseTestCase {
+public class UsuarioLogado {
+	
+	private static WebDriver driver;
+	private static Selenium selenium;
+	
 	@Before
-	public void setUp() throws Exception {
-		WebDriver driver = new FirefoxDriver();
-		String baseUrl = "http://54.243.139.54/";
-		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+	public void setUp(){
+		driver = new FirefoxDriver();
+		selenium = new WebDriverBackedSelenium(driver,"http://54.243.139.54/");
+		driver.get("http://54.243.139.54/");	
 	}
 
 	@Test

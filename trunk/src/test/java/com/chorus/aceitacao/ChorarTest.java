@@ -1,16 +1,24 @@
 package com.chorus.aceitacao;
 
-import com.thoughtworks.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.regex.Pattern;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverBackedSelenium;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class ChorarTest extends SeleneseTestCase {
+import com.thoughtworks.selenium.Selenium;
+
+public class ChorarTest {
+	
+	private static WebDriver driver;
+	private static Selenium selenium;
+	
 	@Before
-	public void setUp() throws Exception {
-		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://54.243.139.54/");
-		selenium.start();
+	public void setUp(){
+		driver = new FirefoxDriver();
+		selenium = new WebDriverBackedSelenium(driver,"http://54.243.139.54/");
+		driver.get("http://54.243.139.54/");	
 	}
 
 	@Test
