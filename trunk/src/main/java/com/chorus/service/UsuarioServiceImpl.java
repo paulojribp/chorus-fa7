@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.caelum.vraptor.ioc.Component;
 
+import com.chorus.auth.UserInfo;
 import com.chorus.dao.UsuarioDao;
 import com.chorus.dto.UsuarioDto;
 import com.chorus.entity.Usuario;
@@ -24,9 +25,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	private ProfilePictureFinder pictureFinder;
 	
-	public UsuarioServiceImpl(UsuarioDao usuarioDao, ProfilePictureFinder pictureFinder) {
+	private UserInfo userInfo;
+	
+	public UsuarioServiceImpl(UsuarioDao usuarioDao, ProfilePictureFinder pictureFinder, UserInfo userInfo) {
 		this.dao = usuarioDao;
 		this.pictureFinder = pictureFinder;
+		this.userInfo = userInfo;
 	}
 
 	private void validar(UsuarioDto usuario) throws Exception {
@@ -62,8 +66,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public Usuario findByUsuario(Usuario usuario) {
-		return dao.findByUsuario(usuario);
+	public UsuarioDto findByUsuario(Usuario usuario) {
+		Usuario u = dao.findByUsuario(usuario);
+		UsuarioDto udto = new UsuarioDto(u);
+		if (!userInfo.getUser().getUsername().equals(u.getUsername())) {
+			if (dao.userAlreadyFollow(u.getId(), userInfo.getUser().getId()))
+				udto.setSeguindo(true);
+			if (dao.userAlreadyFollow(userInfo.getUser().getId(), u.getId()))
+				udto.setSeguido(true);
+		}
+		
+		return udto;
 	}
 
 	@Override
@@ -73,6 +86,22 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 	}
 
+	@Override
+	public void seguir(Long userId, String userASeguir) throws ErroAoSeguirException {
+		Usuario u = dao.findByUsuario(new Usuario(userASeguir));
+		if (!dao.userAlreadyFollow(userId, u.getId())) {
+			dao.seguir(userId, u.getId());
+		}
+	}
+	
+	@Override
+	public void deixarSeguir(Long id, String username) {
+		Usuario u = dao.findByUsuario(new Usuario(username));
+		if (dao.userAlreadyFollow(id, u.getId())) {
+			dao.deixarSeguir(id, u.getId());
+		}
+	}
+	
 	@Override
 	public void refresh(Usuario user) {
 		dao.refresh(user);

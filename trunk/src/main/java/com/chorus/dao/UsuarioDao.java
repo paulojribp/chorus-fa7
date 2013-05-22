@@ -59,6 +59,15 @@ public class UsuarioDao extends GenericDao<Usuario>{
 		}
 	}
 
+	public void deixarSeguir(Long id, Long idDeixarDeSeguir) {
+		String query = "select s from Seguir s where s.usuario.id = ? and s.seguindo.id = ?";
+		Query q = entityManager.createQuery(query);
+		q.setParameter(1, id);
+		q.setParameter(2, idDeixarDeSeguir);
+		Seguir seguir = (Seguir) q.getSingleResult();
+		entityManager.remove(seguir);
+	}
+
 	public void refresh(Usuario user) {
 		user = loadById(user.getId());
 		entityManager.refresh(user);

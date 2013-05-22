@@ -11,10 +11,12 @@ public interface UsuarioService {
 
 	String salvar(UsuarioDto usuario) throws Exception;
 	
-	Usuario findByUsuario(Usuario usuario);
+	UsuarioDto findByUsuario(Usuario usuario);
 	
 	void seguir(Long userId, Long userASeguirId) throws ErroAoSeguirException;
 
+	void seguir(Long id, String username) throws ErroAoSeguirException;
+	
 	void refresh(Usuario user);
 
 	Usuario login(Usuario usuario) throws UsuarioInexistenteException;
@@ -22,5 +24,7 @@ public interface UsuarioService {
 	List<UsuarioDto> findSeguindo(Usuario user);
 
 	List<UsuarioDto> findSeguidores(Usuario user);
+
+	void deixarSeguir(Long id, String username);
 
 }

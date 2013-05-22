@@ -69,7 +69,7 @@ Timeline.listarChorus = function() {
 
 Timeline.refresh = function(lista) {
 	var chorinhosList = $("#chorinhos-list");
-	$(".span12.chorus").remove();
+	chorinhosList.html('');
 	
 	for (var x = 0, size = lista.length; x < size; x++) {
 		var chorus = lista[x];
@@ -110,9 +110,10 @@ Timeline.loadUserPhoto = function(userData) {
 		method: 'POST',
 		data: "email=" + userData.email,
 		success: function(data) {
-			var perfilAvatar = $(".span-avatar."+userData.username);
+			var perfilAvatar = $("#chorinhos-"+userData.username + " .pull-left");
 			for (var x=0,size=perfilAvatar.length; x<size; x++) {
-				$(perfilAvatar[x]).append('<img alt="perfil"  src="'+ data.string +'" />');
+				$(perfilAvatar[x]).html("");
+				$(perfilAvatar[x]).append('<img class="media-object img-polaroid" src="'+ data.string +'" />');
 			}
 		}
 	});
@@ -125,9 +126,9 @@ Timeline.CHORUSMENSAGEM = '%CHORUS_MENSAGEM%';
 Timeline.AVATAR = '%AVATAR%';
 
 Timeline.chorusTemplate = 
-							'<li id="chorinhos" class="media">' +
+							'<li id="chorinhos-'+Timeline.USERNAME+'" class="media">' +
 								'<a class="pull-left" href="#">' +
-								  '<img class="media-object img-polaroid" src="'+ Timeline.USERNAME +'">' +
+								  '<img class="media-object img-polaroid" src="../images/defaultuser.png">' +
 								'</a>' +
 								'<div class="media-body">' +
 								'<div class="row-fluid">' +

@@ -7,6 +7,8 @@
 	<script src="../js/usuario/perfil.js"></script>
 	<script>
 		UsuarioPerfil.avatar = '${usuarioDto.gravatarUrl }';
+		UsuarioPerfil.seguindo = '${usuarioDto.seguindo }';
+		UsuarioPerfil.seguido = '${usuarioDto.seguido }';
 	</script>
 	
         <div class="container">
@@ -27,6 +29,10 @@
 			    		<div style="margin-left: auto; margin-right: auto; width: 20%; text-align: center;">
 					    	<p style="font-weight: bold;">${usuarioDto.nome }</p>
 					    	<p style="margin-top: -12px">@${usuarioDto.username }</p>
+			    		</div>
+			    		<div class="pull-right">
+			    			<button id="btn-follow" class="btn btn-success hidden">Seguir</button>
+			    			<button id="btn-unfollow" class="btn btn-danger hidden">Deixar de Seguir</button>
 			    		</div>
 			    		<div class="clearfix"></div>
 			    	</div>

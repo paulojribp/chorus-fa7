@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.caelum.vraptor.ioc.Component;
 
 import com.chorus.dao.ChorusDao;
+import com.chorus.dao.UsuarioDao;
 import com.chorus.dto.ChoruDto;
 import com.chorus.entity.Chorus;
 import com.chorus.entity.Usuario;
@@ -17,12 +18,12 @@ import com.chorus.util.ShortUrl;
 public class ChorusServiceImpl implements ChorusService {
 
 	private ChorusDao dao;
-	private UsuarioService usuarioService;
+	private UsuarioDao usuarioDao;
 	
 	private static final String DEFAULT_IMAGE = "../images/defaultuser.png";
 	
-	public ChorusServiceImpl(ChorusDao chorusDao, UsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
+	public ChorusServiceImpl(ChorusDao chorusDao, UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
 		this.dao = chorusDao;
 	}
 	
@@ -36,8 +37,8 @@ public class ChorusServiceImpl implements ChorusService {
 		
 		ShortUrl url = new ShortUrl();
 		
-		Usuario usuario = (Usuario) usuarioService.findByUsuario(chorus.getUsuario());
-		chorus.setUsuario(usuario);
+		Usuario u = usuarioDao.findByUsuario(chorus.getUsuario());
+		chorus.setUsuario(u);
 		chorus.setDatahora(Calendar.getInstance());
 		chorus.setMensagem(url.formataTexto(chorus.getMensagem()));
 		
