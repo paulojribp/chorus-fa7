@@ -23,7 +23,7 @@ public class SalvarUsuarioTest {
 	public void beforeClass() {
 		usuarioDao = mock(UsuarioDao.class);
 		pictureFinder = new ProfilePictureFinder();
-		service = new UsuarioServiceImpl(usuarioDao, pictureFinder);
+		service = new UsuarioServiceImpl(usuarioDao, pictureFinder, null);
 	}
 	
 	private UsuarioDto getUsuarioExemplo() {
