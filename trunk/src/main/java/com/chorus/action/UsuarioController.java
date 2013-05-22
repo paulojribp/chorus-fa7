@@ -109,6 +109,12 @@ public class UsuarioController {
 		List<UsuarioDto> users = service.findSeguindo(userInfo.getUser());
 		result.use(Results.json()).from(users).serialize();
 	}
+	
+	@Post
+	public void listarSeguidores(){
+		List<UsuarioDto> users = service.findSeguidores(userInfo.getUser());
+		result.use(Results.json()).from(users).serialize();
+	}
 
 	@Post
 	@Path("/loggedUser")
@@ -143,12 +149,6 @@ public class UsuarioController {
 	@Path(value="/seguidores", priority=1)
 	public void seguidores() {
 		
-	}
-	
-	@Post
-	public void listarSeguidores(){
-		List<UsuarioDto> users = service.findSeguidores(userInfo.getUser());
-		result.use(Results.json()).from(users).serialize();
 	}
 	
 	@Get

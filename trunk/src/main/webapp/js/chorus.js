@@ -56,7 +56,7 @@ Chorus.follow = function(username, callbackFunction) {
 		data: "username=" + username,
 		success: function(data) {
 			if (callbackFunction !== undefined) {
-				callbackFunction();
+				callbackFunction(username);
 			}
 		}
 	});
@@ -69,7 +69,7 @@ Chorus.unfollow = function(username, callbackFunction) {
 		data: "username=" + username,
 		success: function(data) {
 			if (callbackFunction !== undefined) {
-				callbackFunction();
+				callbackFunction(username);
 			}
 		}
 	});
