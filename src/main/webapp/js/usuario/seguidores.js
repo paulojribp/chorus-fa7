@@ -1,3 +1,4 @@
+var Usuario = {};
 $(document).ready(function () {
 	Seguidores.listarSeguidores();
 });
@@ -16,6 +17,11 @@ Seguidores.listarSeguidores = function() {
 				template = template.replace(Seguidores.USERNAME, usuarioDto.username);
 				template = template.replace(Seguidores.NOMEUSUARIO, usuarioDto.nome);
 				template = template.replace(Seguidores.SEGUIDO, usuarioDto.seguido);
+				if(usuarioDto.seguindo){
+					template = template.replace(Seguidores.BUTTON_STATUS, '<button id="btn-deixar-seguir"  onclick="Usuario.deixarSeguir();" type="submit" class="btn btn-danger btn-seguir" >Deixar de Seguir</button>');
+				}else{
+					template = template.replace(Seguidores.BUTTON_STATUS, '<button id="btn-seguir" type="submit" class="btn btn-danger btn-seguir" >Seguir</button>');
+				}
 				template = template.replace(Seguidores.SEGUINDO, usuarioDto.seguindo);
 				
 				seguidoresList.append(template);
@@ -31,7 +37,7 @@ Seguidores.NOMEUSUARIO = '%NOME_USUARIO%';
 Seguidores.USERNAME = '%USERNAME%';
 Seguidores.AVATAR = '%AVATAR%';
 Seguidores.SEGUIDO = '%SEGUIDO%';
-Seguidores.SEGUINDO = '%SEGUINDO%';
+Seguidores.BUTTON_STATUS = '%BUTTON_STATUS%';
 
 Seguidores.chorusTemplate = '<div class="span12 chorus"> ' +
 			    				'<span class="span-avatar"><img alt="perfil" src="'+ Seguidores.AVATAR +'" class="avatar" /></span>' +
@@ -39,8 +45,7 @@ Seguidores.chorusTemplate = '<div class="span12 chorus"> ' +
 			    					Seguidores.NOMEUSUARIO +
 				    				'<a class="span-username">'+Seguidores.USERNAME+'</a>' +
 			    				'</span>' +
-			    				'<span class="span1">' +
-			    					Seguidores.SEGUIDO +
+			    				'<span class="span3">' +
+			    					Seguidores.BUTTON_STATUS
 			    				'</span>' +
-			    				'<span class="span9">'+Seguidores.SEGUIDOR+'</span>' +
 			    			'</div>';
