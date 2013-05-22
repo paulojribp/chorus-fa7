@@ -10,12 +10,16 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.regex.Pattern;
 
-public class ChorusUrlEncurtadaTest extends SeleneseTestCase {
+public class ChorusUrlEncurtadaTest {
+	
+	private static WebDriver driver;
+	private static Selenium selenium;
+	
 	@Before
-	public void setUp() throws Exception {
-		WebDriver driver = new FirefoxDriver();
-		String baseUrl = "http://54.243.139.54/";
-		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+	public void setUp(){
+		driver = new FirefoxDriver();
+		selenium = new WebDriverBackedSelenium(driver,"http://54.243.139.54/");
+		driver.get("http://54.243.139.54/");	
 	}
 
 	@Test
