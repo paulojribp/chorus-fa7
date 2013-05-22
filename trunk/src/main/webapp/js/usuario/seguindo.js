@@ -15,8 +15,6 @@ Seguindo.listarSeguindo = function() {
 				template = template.replace(Seguindo.AVATAR, usuarioDto.gravatarUrl);
 				template = template.replace(/%USERNAME%/g, usuarioDto.username);
 				template = template.replace(Seguindo.NOMEUSUARIO, usuarioDto.nome);
-				template = template.replace(Seguindo.SEGUIDO, usuarioDto.seguido);
-				template = template.replace(Seguindo.SEGUINDO, usuarioDto.seguindo);
 				
 				seguindoList.append(template);
 			}
@@ -39,8 +37,4 @@ Seguindo.chorusTemplate = '<div class="span12 chorus"> ' +
 			    					Seguindo.NOMEUSUARIO +
 				    				'<a href="../usuario/'+Seguindo.USERNAME+'" class="span-username">@'+Seguindo.USERNAME+'</a>' +
 			    				'</span>' +
-			    				'<span class="span1">' +
-			    					Seguindo.SEGUIDO +
-			    				'</span>' +
-			    				'<span class="span9">'+Seguindo.SEGUINDO+'</span>' +
 			    			'</div>';
